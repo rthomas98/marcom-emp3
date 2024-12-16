@@ -27,7 +27,26 @@ export default {
                 "athens-gray": "#F8F9FA",
                 "white": "#FFFFFF",
                 "black": "#0D0D0D",
-              },
+            },
+            keyframes: {
+                'marquee-horizontally': {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                },
+                'loop-vertically-top': {
+                    '0%': { transform: 'translateY(0)' },
+                    '100%': { transform: 'translateY(-50%)' }
+                },
+                'loop-vertically-bottom': {
+                    '0%': { transform: 'translateY(-50%)' },
+                    '100%': { transform: 'translateY(0)' }
+                }
+            },
+            animation: {
+                'marquee-horizontally': 'marquee-horizontally 40s linear infinite',
+                'loop-vertically-top': 'loop-vertically-top 40s linear infinite',
+                'loop-vertically-bottom': 'loop-vertically-bottom 40s linear infinite'
+            },
         },
     },
 

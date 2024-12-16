@@ -1,0 +1,477 @@
+# AI Rules for Marcom Empuls3 Project
+
+## Brand Identity and Design System
+
+### Colors
+```javascript
+colors: {
+    "port-gore": "#1F1946",  // Primary - Dark blue/purple for backgrounds and text
+    "cardinal": "#BD1550",   // Secondary - Red for accents and CTAs
+    "koromiko": "#FFC259",   // Tertiary - Orange/Yellow for highlights
+    "athens-gray": "#F8F9FA", // Background
+    "white": "#FFFFFF",
+    "black": "#0D0D0D"
+}
+```
+
+### Typography
+- Headers: Asap font (`font-heading`)
+- Body: Montserrat font (default sans-serif)
+
+## Component Guidelines
+
+### Relume UI Integration
+1. Use Relume UI components as base components
+2. Always customize with brand colors
+3. Maintain Relume's functionality while applying brand styling
+
+### Component Template
+```jsx
+import { ComponentName } from '@relume_io/relume-ui';
+import { IconName } from 'lucide-react';
+
+export function CustomComponent({ children, ...props }) {
+  return (
+    <ComponentName
+      className="font-sans text-port-gore"
+      {...props}
+    >
+      {children}
+    </ComponentName>
+  );
+}
+```
+
+### Icon System
+- Use Lucide icons exclusively
+- Default icon configuration:
+  ```jsx
+  <Icon
+    size={24}
+    strokeWidth={1.5}
+    className="text-port-gore"
+  />
+  ```
+
+### Button Hierarchy
+1. Primary: `bg-cardinal text-white`
+2. Secondary: `bg-port-gore text-white`
+3. Tertiary: `bg-athens-gray text-port-gore`
+
+## Layout and Spacing
+
+### Responsive Design
+- Use Tailwind's default breakpoints
+- Follow mobile-first approach
+- Consistent spacing scale:
+  ```jsx
+  className="p-6 md:p-8 lg:p-12"
+  ```
+
+### Dark Mode
+- Light mode:
+  - Background: athens-gray
+  - Text: port-gore
+- Dark mode:
+  - Background: port-gore
+  - Text: white
+
+## SEO Guidelines
+
+### Meta Tags
+1. Every page must include:
+   ```html
+   <meta name="description" content="[Unique description]">
+   <meta name="keywords" content="[Relevant keywords]">
+   <meta name="robots" content="index, follow">
+   ```
+
+### Title Structure
+1. Format: `[Page Name] | [Brand Name]`
+2. Keep under 60 characters
+3. Include primary keyword naturally
+
+### Image Optimization
+1. Always include:
+   - Alt text
+   - Descriptive filenames
+   - Lazy loading
+   ```jsx
+   <img
+     alt="Descriptive text"
+     loading="lazy"
+     width="[width]"
+     height="[height]"
+   />
+   ```
+
+### URL Structure
+1. Use semantic URLs
+2. Include relevant keywords
+3. Use hyphens for separators
+4. Keep URLs short and descriptive
+
+### Performance
+1. Implement page caching
+2. Optimize image sizes
+3. Use CDN for assets
+4. Monitor Core Web Vitals
+
+## Responsive Design Guidelines
+
+### Breakpoints
+```javascript
+screens: {
+  'sm': '640px',   // Mobile landscape
+  'md': '768px',   // Tablets
+  'lg': '1024px',  // Desktop
+  'xl': '1280px',  // Large desktop
+  '2xl': '1536px', // Extra large screens
+}
+```
+
+### Mobile-First Principles
+1. Start with mobile layout
+2. Progressive enhancement
+3. Touch-friendly targets (min 44px)
+4. Avoid horizontal scrolling
+
+### Layout Rules
+1. Fluid Grids:
+   ```jsx
+   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+   ```
+
+2. Flexible Images:
+   ```jsx
+   className="w-full h-auto object-cover"
+   ```
+
+3. Container Padding:
+   ```jsx
+   className="px-4 sm:px-6 lg:px-8"
+   ```
+
+### Typography Scaling
+```javascript
+fontSize: {
+  'xs': ['0.75rem', { lineHeight: '1rem' }],
+  'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+  'base': ['1rem', { lineHeight: '1.5rem' }],
+  'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+  'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+  '2xl': ['1.5rem', { lineHeight: '2rem' }],
+}
+```
+
+### Component Adaptations
+1. Stack on mobile:
+   ```jsx
+   className="flex flex-col md:flex-row"
+   ```
+
+2. Hide/Show Elements:
+   ```jsx
+   className="hidden md:block"  // Show on desktop
+   className="md:hidden"        // Hide on desktop
+   ```
+
+3. Responsive Spacing:
+   ```jsx
+   className="space-y-4 md:space-y-6 lg:space-y-8"
+   ```
+
+### Testing Requirements
+1. Test on multiple devices
+2. Check portrait/landscape
+3. Verify touch interactions
+4. Test with different content lengths
+
+### Performance Considerations
+1. Conditional loading for mobile
+2. Optimize images per breakpoint
+3. Monitor mobile load times
+4. Test on slow connections
+
+## Stripe-Inspired Design System
+
+### Visual Style
+1. Clean, minimal design with ample white space
+2. Gradient transitions between sections
+   ```jsx
+   // Example gradient background
+   className="bg-gradient-to-b from-athens-gray to-white"
+   ```
+
+### Typography Scale (Stripe-inspired)
+```javascript
+fontSize: {
+    'xs': ['0.75rem', { lineHeight: '1rem' }],
+    'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+    'base': ['1rem', { lineHeight: '1.5rem' }],
+    'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+    'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+    '2xl': ['1.5rem', { lineHeight: '2rem' }],
+    '3xl': ['2rem', { lineHeight: '2.25rem' }],
+    '4xl': ['2.5rem', { lineHeight: '2.5rem' }],
+    '5xl': ['3rem', { lineHeight: '3rem' }],
+}
+```
+
+### Component Styling
+1. Cards and Containers:
+   ```jsx
+   // Elevated card with subtle shadow
+   className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+   ```
+
+2. Interactive Elements:
+   ```jsx
+   // Primary button with gradient
+   className="bg-gradient-to-r from-cardinal to-port-gore text-white"
+   
+   // Secondary button with outline
+   className="border-2 border-port-gore text-port-gore hover:bg-port-gore hover:text-white"
+   ```
+
+3. Navigation:
+   ```jsx
+   // Transparent to solid header
+   className="bg-white/80 backdrop-blur-sm sticky top-0"
+   ```
+
+### Layout Patterns
+1. Hero Sections:
+   - Large, bold headlines (font-heading)
+   - Gradient backgrounds
+   - Floating UI elements
+   ```jsx
+   <div className="relative overflow-hidden">
+     <div className="absolute inset-0 bg-gradient-to-r from-port-gore/10 to-cardinal/10" />
+     {/* Content */}
+   </div>
+   ```
+
+2. Feature Sections:
+   - Grid layouts with illustrations
+   - Alternating text/image alignment
+   - Subtle animations on scroll
+
+3. Social Proof:
+   - Logo clouds with grayscale effect
+   - Testimonial cards with subtle shadows
+   - Metric showcases
+
+### Animation Guidelines
+1. Subtle Hover Effects:
+   ```jsx
+   className="transition-all hover:translate-y-[-2px] hover:shadow-lg"
+   ```
+
+2. Page Transitions:
+   - Fade in sections on scroll
+   - Smooth page transitions
+   - Progressive loading states
+
+### Content Presentation
+1. Text Hierarchy:
+   - Headlines: Asap font, bold, large size
+   - Subheadlines: Asap font, medium weight
+   - Body: Montserrat font, regular weight
+
+2. Image Treatment:
+   - Subtle rounded corners
+   - Optional gradient overlays
+   - Shadow on hover
+
+3. Data Visualization:
+   - Clean, minimal charts
+   - Brand color palette
+   - Interactive tooltips
+
+### Section Spacing
+```jsx
+// Consistent vertical rhythm
+className="py-12 md:py-16 lg:py-24"
+
+// Container width
+className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+```
+
+### Micro-interactions
+1. Button States:
+   ```jsx
+   className="transform transition-all duration-200 ease-in-out
+              hover:scale-105 active:scale-95"
+   ```
+
+2. Form Fields:
+   ```jsx
+   className="focus:ring-2 focus:ring-cardinal focus:border-transparent"
+   ```
+
+3. Loading States:
+   - Skeleton loaders
+   - Smooth transitions
+   - Progress indicators
+
+### Brand Color Application
+1. Primary Sections:
+   - Background: athens-gray to white gradients
+   - Text: port-gore
+   - Accents: cardinal
+
+2. Secondary Sections:
+   - Background: port-gore
+   - Text: white
+   - Accents: koromiko
+
+3. CTAs and Important Elements:
+   - Primary: cardinal
+   - Secondary: port-gore
+   - Tertiary: koromiko
+
+### Responsive Behavior
+1. Mobile-First Layout:
+   - Stack elements vertically
+   - Larger touch targets
+   - Simplified navigation
+
+2. Tablet Adaptations:
+   - Grid layouts begin
+   - Side-by-side content
+   - Expanded navigation
+
+3. Desktop Refinements:
+   - Full layout complexity
+   - Hover effects
+   - Enhanced animations
+
+## Development Rules
+
+### Component Creation
+1. Start with Relume UI base component
+2. Apply brand colors and typography
+3. Add Lucide icons where needed
+4. Ensure responsive behavior
+5. Implement dark mode support
+
+### Code Style
+1. Use TypeScript for all new components
+2. Implement proper prop types and interfaces
+3. Follow React best practices
+4. Use Tailwind for all styling
+
+### Performance
+1. Lazy load components when possible
+2. Optimize images and assets
+3. Monitor bundle size
+
+## File Format and Component Conversion
+
+### File Extensions
+1. Use `.jsx` for all React components
+2. Do NOT use `.tsx` files
+3. Ensure all new components are created with `.jsx` extension
+
+### Relume Component Conversion
+1. Convert all Relume components from `.tsx` to `.jsx`
+2. Remove TypeScript types and interfaces
+3. Convert type annotations:
+   ```jsx
+   // From TypeScript (.tsx):
+   interface Props {
+     title: string;
+     onClick: () => void;
+   }
+   
+   // To JSX:
+   function Component({ title, onClick }) {
+     // PropTypes for type checking
+     Component.propTypes = {
+       title: PropTypes.string.isRequired,
+       onClick: PropTypes.func.isRequired,
+     };
+   }
+   ```
+
+4. Handle Generic Components:
+   ```jsx
+   // From TypeScript (.tsx):
+   <Button<typeof data> genericProp={data}>
+   
+   // To JSX:
+   <Button genericProp={data}>
+   ```
+
+5. Remove Type Assertions:
+   ```jsx
+   // From TypeScript (.tsx):
+   const value = event.target as HTMLInputElement;
+   
+   // To JSX:
+   const value = event.target;
+   ```
+
+### PropTypes Usage
+1. Always define PropTypes for components
+2. Use PropTypes for runtime type checking
+3. Example:
+   ```jsx
+   import PropTypes from 'prop-types';
+   
+   function RelumeComponent({ title, items, onAction }) {
+     return (/* component content */);
+   }
+   
+   RelumeComponent.propTypes = {
+     title: PropTypes.string.isRequired,
+     items: PropTypes.arrayOf(PropTypes.shape({
+       id: PropTypes.string,
+       name: PropTypes.string
+     })),
+     onAction: PropTypes.func
+   };
+   
+   RelumeComponent.defaultProps = {
+     items: [],
+     onAction: () => {}
+   };
+   ```
+
+### Component Conversion Checklist
+1. Change file extension to `.jsx`
+2. Remove TypeScript imports
+3. Remove interface and type definitions
+4. Convert TypeScript types to PropTypes
+5. Remove generic type parameters
+6. Remove type assertions
+7. Test component functionality after conversion
+
+## Project Structure
+- Components should be organized by feature
+- Shared components in common directory
+- Follow atomic design principles:
+  - Atoms (basic components)
+  - Molecules (component combinations)
+  - Organisms (complex components)
+  - Templates (page layouts)
+  - Pages (full views)
+
+## Testing Guidelines
+1. Write unit tests for all components
+2. Test responsive behavior
+3. Test dark mode functionality
+4. Ensure accessibility compliance
+
+## Accessibility
+1. Use semantic HTML
+2. Maintain WCAG 2.1 compliance
+3. Ensure proper color contrast
+4. Implement keyboard navigation
+
+## Documentation
+1. Document all components
+2. Include usage examples
+3. Maintain changelog
+4. Update README as needed
