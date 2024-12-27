@@ -30,7 +30,7 @@ const useScrollPosition = () => {
 const topLineVariants = {
   open: {
     rotate: 45,
-    translateY: 5,
+    translateY: 8,
   },
   closed: {
     rotate: 0,
@@ -50,12 +50,38 @@ const middleLineVariants = {
 const bottomLineVariants = {
   open: {
     rotate: -45,
-    translateY: -5,
+    translateY: -8,
   },
   closed: {
     rotate: 0,
     translateY: 0,
   },
+};
+
+const dropdownVariants = {
+  hidden: { 
+    opacity: 0,
+    y: -5,
+    scale: 0.95
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -5,
+    scale: 0.95,
+    transition: {
+      duration: 0.15,
+      ease: "easeIn"
+    }
+  }
 };
 
 const SubMenu = ({ megaMenu, title, isMobile }) => {
@@ -78,26 +104,33 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
       <div className="space-y-2">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium text-port-gore hover:bg-port-gore/5"
+          className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium text-port-gore hover:bg-port-gore/5 hover:text-cardinal transition-all duration-200"
         >
           <span>{title}</span>
-          <ChevronDown
-            className={`h-5 w-5 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronDown className="h-5 w-5" />
+          </motion.div>
         </button>
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={dropdownVariants}
             >
               <div className="space-y-2 pl-4">
                 {megaMenu.categoryLinks.map((category, categoryIndex) => (
-                  <div key={categoryIndex} className="space-y-2">
+                  <motion.div
+                    key={categoryIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: categoryIndex * 0.1 }}
+                    className="space-y-2"
+                  >
                     {category.title && (
                       <p className="text-sm font-medium text-port-gore/60">
                         {category.title}
@@ -108,13 +141,15 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
                         <Link
                           key={linkIndex}
                           href={link.url}
-                          className="group flex items-start rounded-lg p-2 text-sm text-port-gore hover:bg-port-gore/5"
+                          className="group flex items-start rounded-lg p-2 text-sm text-port-gore hover:bg-cardinal/5 transition-all duration-200"
                         >
-                          <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal">
+                          <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
                             {link.icon}
                           </div>
                           <div>
-                            <div className="font-medium">{link.title}</div>
+                            <div className="font-medium group-hover:text-cardinal transition-colors duration-200">
+                              {link.title}
+                            </div>
                             {link.description && (
                               <p className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
                                 {link.description}
@@ -124,7 +159,7 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
                         </Link>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -138,60 +173,69 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
     <div ref={menuRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-x-1 text-sm font-medium leading-6 text-port-gore hover:text-cardinal transition-colors duration-200"
+        className="group flex items-center gap-x-1 text-sm font-medium leading-6 text-port-gore hover:text-cardinal transition-all duration-200"
       >
         {title}
-        <ChevronDown
-          className={`h-5 w-5 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="h-5 w-5 group-hover:text-cardinal transition-colors duration-200" />
+        </motion.div>
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed left-0 right-0 z-50 mt-2 bg-white shadow-lg"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={dropdownVariants}
+            className="fixed left-0 right-0 z-50 mt-2"
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className={`grid gap-x-8 gap-y-6 p-6 ${
-                title === "Services" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"
-              }`}>
-                {megaMenu.categoryLinks.map((category, categoryIndex) => (
-                  <div key={categoryIndex} className="space-y-3">
-                    {category.title && (
-                      <p className="text-sm font-medium text-port-gore/60">
-                        {category.title}
-                      </p>
-                    )}
-                    <div className="space-y-3">
-                      {category.links.map((link, linkIndex) => (
-                        <Link
-                          key={linkIndex}
-                          href={link.url}
-                          className="group flex items-start rounded-lg p-2 hover:bg-port-gore/5"
-                        >
-                          <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal">
-                            {link.icon}
-                          </div>
-                          <div>
-                            <div className="font-medium text-port-gore group-hover:text-cardinal">
-                              {link.title}
+              <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-port-gore/5">
+                <div className={`grid gap-x-8 gap-y-6 p-6 ${
+                  title === "Services" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"
+                }`}>
+                  {megaMenu.categoryLinks.map((category, categoryIndex) => (
+                    <motion.div
+                      key={categoryIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: categoryIndex * 0.1 }}
+                      className="space-y-3"
+                    >
+                      {category.title && (
+                        <p className="text-sm font-medium text-port-gore/60">
+                          {category.title}
+                        </p>
+                      )}
+                      <div className="space-y-3">
+                        {category.links.map((link, linkIndex) => (
+                          <Link
+                            key={linkIndex}
+                            href={link.url}
+                            className="group flex items-start rounded-xl p-3 hover:bg-cardinal/5 transition-all duration-200"
+                          >
+                            <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
+                              {link.icon}
                             </div>
-                            {link.description && (
-                              <p className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
-                                {link.description}
-                              </p>
-                            )}
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                            <div>
+                              <div className="font-medium text-port-gore group-hover:text-cardinal transition-colors duration-200">
+                                {link.title}
+                              </div>
+                              {link.description && (
+                                <p className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
+                                  {link.description}
+                                </p>
+                              )}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -214,8 +258,12 @@ export function Navbar() {
   const { logo, navLinks, buttons } = navigationConfig;
   const showNavbar = scrollPosition < 100 || isScrollingUp;
 
+  const buttonStyles = "rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200 hover:shadow-md";
+  const primaryButtonStyles = `${buttonStyles} bg-cardinal text-white hover:bg-cardinal/90`;
+  const secondaryButtonStyles = `${buttonStyles} bg-port-gore text-white hover:bg-port-gore/90`;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-sm">
       <motion.div
         initial={false}
         animate={{
@@ -257,7 +305,7 @@ export function Navbar() {
               <Button
                 key={index}
                 {...button}
-                className="rounded-full bg-cardinal px-6 py-2 text-sm font-medium text-white hover:bg-cardinal/90 focus:outline-none focus:ring-0"
+                className={index === 0 ? primaryButtonStyles : secondaryButtonStyles}
               >
                 {button.title}
               </Button>
@@ -266,23 +314,23 @@ export function Navbar() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="relative h-10 w-10 text-port-gore"
+              className="relative h-10 w-10 text-port-gore hover:text-cardinal transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
-              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-[5px]">
+              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-2">
                 <motion.span
-                  className="block h-[2px] w-5 bg-current origin-center"
+                  className="block h-0.5 w-6 bg-current"
                   animate={isMobileMenuOpen ? "open" : "closed"}
                   variants={topLineVariants}
                 />
                 <motion.span
-                  className="block h-[2px] w-5 bg-current"
+                  className="block h-0.5 w-6 bg-current"
                   animate={isMobileMenuOpen ? "open" : "closed"}
                   variants={middleLineVariants}
                 />
                 <motion.span
-                  className="block h-[2px] w-5 bg-current origin-center"
+                  className="block h-0.5 w-6 bg-current"
                   animate={isMobileMenuOpen ? "open" : "closed"}
                   variants={bottomLineVariants}
                 />
@@ -314,9 +362,9 @@ export function Navbar() {
                     ) : (
                       <Link
                         href={navLink.url}
-                        className="flex items-center gap-x-2 rounded-lg px-3 py-2 text-base font-medium leading-7 text-port-gore hover:bg-port-gore/5"
+                        className="flex items-center gap-x-2 rounded-lg px-3 py-2 text-base font-medium leading-7 text-port-gore hover:bg-port-gore/5 hover:text-cardinal transition-all duration-200"
                       >
-                        <div className="shrink-0 text-port-gore/60">
+                        <div className="shrink-0 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
                           {navLink.icon}
                         </div>
                         {navLink.title}
@@ -330,7 +378,11 @@ export function Navbar() {
                   <div key={index} className="-mx-3">
                     <Button
                       {...button}
-                      className="w-full justify-center rounded-full bg-cardinal px-6 py-2 text-sm font-medium text-white hover:bg-cardinal/90 focus:outline-none focus:ring-0"
+                      className={
+                        index === 0
+                          ? `w-full justify-center ${primaryButtonStyles}`
+                          : `w-full justify-center ${secondaryButtonStyles}`
+                      }
                     >
                       {button.title}
                     </Button>

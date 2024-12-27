@@ -1,6 +1,7 @@
 import React from 'react';
 import MarcomLayout from '../Layouts/MarcomLayout';
 import { Header79 } from '../Components/HomePage/Header79';
+import { Layout499 } from '../Components/HomePage/Layout499';
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
                     { title: "Learn More", variant: "secondary-alt" }
                 ]}
             />
+            <Layout499 />
         </MarcomLayout>
     );
 }

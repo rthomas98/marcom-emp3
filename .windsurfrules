@@ -1,5 +1,78 @@
 # AI Rules for Marcom Empuls3 Project
 
+- Do not use any AI generated images.
+- Remember to use the brand colors.
+- Do not change the look and feel when following these rules. Just fix the issue at hand.
+- Please stay consistent with the brand colors.
+- Please stay consistent with the font.
+- Please stay consistent with the spacing.
+- Please stay consistent with the typography.
+- Please stay consistent with the layout.
+- Please stay consistent with the component hierarchy.
+- Please stay consistent with the micro-interactions.
+- Please stay consistent with the animations.
+- Please stay consistent with the content presentation.
+- Please stay consistent with the section spacing.
+- Please stay consistent with the micro-interactions.
+- Please stay consistent with the brand color application.
+- Please stay consistent with the responsive behavior.
+
+- please rember to user the https://lucide.dev/icons/ icons throughout the project.
+
+Please do not schange the look and feel when following these rules. Just fix the issue at hand.
+
+## Project Structure
+
+// ... existing rules ...
+
+## Project Structure
+
+The project is structured as follows:
+
+```
+src/
+├── components/
+│   ├── atoms/         # Basic building blocks (buttons, inputs, icons)
+│   ├── molecules/     # Combinations of atoms (form fields, cards)
+│   ├── organisms/     # Complex components (headers, footers, sidebars)
+│   ├── templates/     # Page layouts and structures
+│   └── pages/         # Full page components
+├── hooks/             # Custom React hooks
+├── utils/             # Helper functions and utilities
+├── styles/           
+│   ├── globals.css    # Global styles
+│   └── themes/        # Theme configurations
+├── lib/              
+│   ├── api/          # API integration
+│   └── constants/     # Constants and configurations
+├── public/            # Static assets
+│   ├── images/       
+│   └── fonts/
+└── tests/             # Test files
+    ├── unit/
+    └── integration/
+```
+
+### Key Directories
+
+- `components/`: Follows atomic design principles for component organization
+- `hooks/`: Shared React hooks for common functionality
+- `utils/`: Helper functions, formatters, and utility functions
+- `styles/`: Global styles and theme configurations
+- `lib/`: Core functionality, API integration, and constants
+- `public/`: Static assets like images and fonts
+- `tests/`: Unit and integration tests
+
+// ... rest of existing rules ...
+
+
+## Filament Rules
+- Using Filament for the admin panel
+- Filament is a Laravel framework for building admin panels https://filamentphp.com/docs/3.x/panels/installation
+- https://filamentphp.com/docs/3.x/panels/installation 
+
+
+
 ## Brand Identity and Design System
 
 ### Colors
@@ -9,8 +82,8 @@ colors: {
     "cardinal": "#BD1550",   // Secondary - Red for accents and CTAs
     "koromiko": "#FFC259",   // Tertiary - Orange/Yellow for highlights
     "athens-gray": "#F8F9FA", // Background
-    "white": "#FFFFFF",
-    "black": "#0D0D0D"
+    "white": "#FFFFFF", // White
+    "black": "#0D0D0D" // Black
 }
 ```
 
@@ -24,6 +97,7 @@ colors: {
 1. Use Relume UI components as base components
 2. Always customize with brand colors
 3. Maintain Relume's functionality while applying brand styling
+4. Keep the same functionality of the original component
 
 ### Component Template
 ```jsx
@@ -54,9 +128,9 @@ export function CustomComponent({ children, ...props }) {
   ```
 
 ### Button Hierarchy
-1. Primary: `bg-cardinal text-white`
-2. Secondary: `bg-port-gore text-white`
-3. Tertiary: `bg-athens-gray text-port-gore`
+1. Primary: `bg-cardinal text-white hover:shadow-md transition-all`
+2. Secondary: `bg-port-gore text-white hover:shadow-md transition-all`
+3. Tertiary: `bg-athens-gray text-port-gore hover:shadow-sm transition-all`
 
 ## Layout and Spacing
 
@@ -228,10 +302,10 @@ fontSize: {
 2. Interactive Elements:
    ```jsx
    // Primary button with gradient
-   className="bg-gradient-to-r from-cardinal to-port-gore text-white"
+   className="bg-gradient-to-r from-cardinal to-port-gore text-white hover:shadow-md transition-all"
    
-   // Secondary button with outline
-   className="border-2 border-port-gore text-port-gore hover:bg-port-gore hover:text-white"
+   // Secondary button
+   className="bg-port-gore text-white hover:shadow-md transition-all"
    ```
 
 3. Navigation:

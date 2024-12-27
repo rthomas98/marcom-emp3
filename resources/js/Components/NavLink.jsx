@@ -11,14 +11,14 @@ export default function NavLink({
         <Link
             {...props}
             className={
-                'inline-flex items-center gap-2 border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none ' +
+                'inline-flex items-center gap-2 px-3 py-2 text-sm font-medium leading-5 rounded-full transition-all duration-200 hover:shadow-sm ' +
                 (active
-                    ? 'border-cardinal text-port-gore focus:border-cardinal'
-                    : 'border-transparent text-port-gore/70 hover:border-port-gore/30 hover:text-port-gore focus:border-port-gore/30 focus:text-port-gore') +
+                    ? 'text-cardinal bg-cardinal/5 hover:bg-cardinal/10'
+                    : 'text-port-gore hover:text-cardinal hover:bg-port-gore/5') +
                 (className ? ' ' + className : '')
             }
         >
-            {icon && <span className="w-4 h-4">{icon}</span>}
+            {icon && <span className="w-4 h-4 transition-colors duration-200">{icon}</span>}
             {children}
         </Link>
     );
