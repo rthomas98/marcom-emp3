@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TimeEntryResource\Pages;
-use App\Filament\Resources\TimeEntryResource\RelationManagers;
 use App\Models\TimeEntry;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,13 +10,16 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TimeEntryResource extends Resource
 {
     protected static ?string $model = TimeEntry::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
+
+    protected static ?string $navigationGroup = 'Project Management';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

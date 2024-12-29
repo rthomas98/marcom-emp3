@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CodeRepositoryResource\Pages;
-use App\Filament\Resources\CodeRepositoryResource\RelationManagers;
 use App\Models\CodeRepository;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,13 +10,16 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CodeRepositoryResource extends Resource
 {
     protected static ?string $model = CodeRepository::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-code-bracket';
+
+    protected static ?string $navigationGroup = 'Project Management';
+
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {

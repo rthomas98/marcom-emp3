@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InvitationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -172,5 +173,8 @@ Route::get('/terms-of-service', function () {
 Route::get('/cookie-policy', function () {
     return Inertia::render('Legal/CookiePolicy');
 })->name('legal.cookies');
+
+Route::get('invitation/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+Route::post('invitation/{token}', [InvitationController::class, 'accept']);
 
 require __DIR__.'/auth.php';

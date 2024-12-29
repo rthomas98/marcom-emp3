@@ -24,7 +24,6 @@ class MarcomPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-
             ->id('marcom')
             ->darkMode(false)
             ->brandLogo(asset('images/logos/logo.svg'))
@@ -47,6 +46,8 @@ class MarcomPanelProvider extends PanelProvider
             ->widgets([
                 // Remove default widgets
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->databaseNotifications()
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

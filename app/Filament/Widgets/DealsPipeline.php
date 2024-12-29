@@ -54,4 +54,9 @@ class DealsPipeline extends ChartWidget
     {
         return 'bar';
     }
+
+    public function getColumnSpan(): int | string | array
+    {
+        return 'full';
+    }
 } 
