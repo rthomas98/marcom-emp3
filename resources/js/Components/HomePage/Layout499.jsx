@@ -1,155 +1,146 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Shield, GitBranch } from 'lucide-react';
-import { Tab } from '@headlessui/react';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  VideoIframe,
+} from "@relume_io/relume-ui";
+import { RxChevronRight } from "react-icons/rx";
+import { FaCirclePlay } from "react-icons/fa6";
 
-export function Layout499() {
-  const [selectedTab, setSelectedTab] = useState(0);
-
-  const tabs = [
-    {
-      name: "Development",
-      features: [
-        {
-          icon: <Zap size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Lightning Fast",
-          description: "Experience blazing-fast performance with our optimized solutions."
-        },
-        {
-          icon: <Shield size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Enterprise Security",
-          description: "Bank-grade security measures to protect your valuable data."
-        },
-        {
-          icon: <GitBranch size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Seamless Integration",
-          description: "Effortlessly connect with your existing tools and workflows."
-        }
-      ],
-      image: {
-        src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
-        alt: "Development team collaboration"
-      }
-    },
-    {
-      name: "Design",
-      features: [
-        {
-          icon: <Zap size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Modern Design",
-          description: "Create stunning user interfaces with our modern design system."
-        },
-        {
-          icon: <Shield size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Responsive",
-          description: "Fully responsive layouts that work on any device or screen size."
-        },
-        {
-          icon: <GitBranch size={24} strokeWidth={1.5} className="text-cardinal" />,
-          title: "Customizable",
-          description: "Easily customize and extend components to match your brand."
-        }
-      ],
-      image: {
-        src: "https://images.unsplash.com/photo-1561070791-2526d30994b5",
-        alt: "Design team working"
-      }
-    }
-  ];
+export const Layout499 = (props) => {
+  const { tagline, heading, description, tabs, buttons, defaultTabValue } = {
+    ...Layout499Defaults,
+    ...props,
+  };
 
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-port-gore/5 to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Tab.Group onChange={setSelectedTab}>
-          <Tab.List className="flex space-x-4 border-b border-port-gore/10">
-            {tabs.map((tab, index) => (
-              <Tab
-                key={index}
-                className={({ selected }) =>
-                  `px-4 py-2 text-sm font-medium leading-5 transition-all duration-200 focus:outline-none
-                  ${selected 
-                    ? 'text-cardinal border-b-2 border-cardinal' 
-                    : 'text-port-gore/60 hover:text-port-gore/80'
-                  }`
+    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+      <div className="container">
+        <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 md:w-auto lg:mb-20">
+          <p className="mb-3 font-semibold text-cardinal md:mb-4">{tagline}</p>
+          <h1 className="mb-5 text-5xl font-bold text-port-gore md:mb-6 md:text-7xl lg:text-8xl">{heading}</h1>
+          <p className="text-port-gore/70 md:text-lg">{description}</p>
+          <div className="mt-6 flex items-center justify-center gap-x-4 md:mt-8">
+            {buttons.map((button, index) => (
+              <Button 
+                key={index} 
+                {...button}
+                className={
+                  button.variant === "secondary" 
+                    ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full"
+                    : "text-cardinal hover:text-cardinal/80"
                 }
               >
-                {tab.name}
-              </Tab>
+                {button.title}
+                {button.variant === "link" && button.iconRight}
+              </Button>
             ))}
-          </Tab.List>
+          </div>
+        </div>
+        <Tabs
+          defaultValue={defaultTabValue}
+          className="grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20"
+        >
+          <TabsList className="col-start-1 col-end-2 row-start-1 row-end-2 grid grid-cols-1 items-center gap-x-4">
+            {tabs.map((tab, index) => (
+              <TabsTrigger
+                key={index}
+                value={tab.value}
+                className="flex-col items-start whitespace-normal border-0 border-l-2 border-transparent bg-transparent py-4 pl-6 pr-0 text-left data-[state=active]:border-l-cardinal data-[state=active]:bg-transparent data-[state=active]:text-port-gore md:pl-8"
+              >
+                <h3 className="mb-3 text-2xl font-bold text-port-gore md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">
+                  {tab.heading}
+                </h3>
+                <p className="text-port-gore/70">{tab.description}</p>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {tabs.map((tab, index) => (
+            <TabsContent key={index} value={tab.value} className="data-[state=active]:animate-tabs">
+              {tab.image && <img src={tab.image.src} alt={tab.image.alt} className="size-full rounded-lg shadow-lg" />}
+              {tab.video && (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative flex w-full items-center justify-center">
+                      <img
+                        src={tab.video.image.src}
+                        alt={tab.video.image.alt}
+                        className="size-full rounded-lg object-cover shadow-lg"
+                      />
+                      <span className="absolute inset-0 z-10 rounded-lg bg-black/50" />
+                      <FaCirclePlay className="absolute z-20 size-16 text-white transition-transform hover:scale-110" />
+                    </button>
+                  </DialogTrigger>
 
-          <Tab.Panels className="mt-16">
-            <AnimatePresence mode="wait">
-              {tabs.map((tab, idx) => (
-                <Tab.Panel
-                  key={idx}
-                  static
-                  className={idx === selectedTab ? 'block' : 'hidden'}
-                >
-                  <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.4 }}
-                      className="relative"
-                    >
-                      <h2 className="font-heading text-3xl font-bold tracking-tight text-port-gore sm:text-4xl">
-                        Transform Your Digital Presence
-                      </h2>
-                      <p className="mt-6 text-lg leading-8 text-port-gore/70">
-                        Unlock new possibilities with our innovative solutions. We help businesses navigate the digital landscape with confidence.
-                      </p>
-                      <div className="mt-10 space-y-8">
-                        {tab.features.map((feature, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="flex gap-4"
-                          >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cardinal/10">
-                              {feature.icon}
-                            </div>
-                            <div>
-                              <h3 className="font-heading text-lg font-semibold text-port-gore">
-                                {feature.title}
-                              </h3>
-                              <p className="mt-2 text-base text-port-gore/70">
-                                {feature.description}
-                              </p>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.4 }}
-                      className="relative"
-                    >
-                      <div className="aspect-[3/2] overflow-hidden rounded-2xl bg-gray-50">
-                        <img
-                          src={`${tab.image.src}?auto=format&fit=crop&w=1740&q=80`}
-                          alt={tab.image.alt}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-cardinal/20 to-transparent mix-blend-multiply" />
-                      </div>
-                    </motion.div>
-                  </div>
-                </Tab.Panel>
-              ))}
-            </AnimatePresence>
-          </Tab.Panels>
-        </Tab.Group>
+                  <DialogContent>
+                    <VideoIframe video={tab.video.url} />
+                  </DialogContent>
+                </Dialog>
+              )}
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );
-} 
+};
+
+export const Layout499Defaults = {
+  tagline: "Enterprise Experience",
+  heading: "Global Leaders Trust Us",
+  description:
+    "Proven success delivering transformative solutions for industry giants. Our enterprise partnerships demonstrate our ability to handle complex, large-scale projects with excellence.",
+  defaultTabValue: "warner-bros",
+  tabs: [
+    {
+      value: "warner-bros",
+      heading: "Warner Bros Discovery",
+      description:
+        "Revolutionizing content delivery and streaming infrastructure for one of the world's largest media companies.",
+      video: {
+        image: {
+          src: "/images/enterprise/warner-bros-case.svg",
+          alt: "Warner Bros Discovery case study",
+        },
+        url: "https://www.youtube.com/embed/placeholder-warner-bros",
+      },
+    },
+    {
+      value: "shell",
+      heading: "Shell",
+      description:
+        "Implementing cutting-edge IoT solutions and data analytics platforms to optimize global operations.",
+      image: {
+        src: "/images/enterprise/shell-case.svg",
+        alt: "Shell case study showcase",
+      },
+    },
+    {
+      value: "samsung",
+      heading: "Samsung",
+      description:
+        "Developing innovative mobile solutions and enterprise software integration systems.",
+      image: {
+        src: "/images/enterprise/samsung-case.svg",
+        alt: "Samsung case study showcase",
+      },
+    },
+  ],
+  buttons: [
+    { 
+      title: "View Case Studies", 
+      variant: "secondary"
+    },
+    {
+      title: "Enterprise Solutions",
+      variant: "link",
+      size: "link",
+      iconRight: <RxChevronRight />,
+    },
+  ],
+};
