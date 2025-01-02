@@ -1,7 +1,26 @@
 import { useState } from "react";
 import { Button, useMediaQuery } from "@relume_io/relume-ui";
 import { Link } from "@inertiajs/react";
-import { ChevronDown } from "lucide-react";
+import { 
+  ChevronDown, 
+  LayoutGrid, 
+  Code, 
+  Monitor,
+  Database,
+  Globe,
+  MessageSquare,
+  Rocket,
+  Smartphone,
+  Box,
+  Settings,
+  Users,
+  UserPlus,
+  Wrench,
+  BookOpen,
+  Briefcase,
+  Image,
+  Layers
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
@@ -99,6 +118,30 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const getIcon = (iconName) => {
+    const icons = {
+      LayoutGrid,
+      Code,
+      Monitor,
+      Database,
+      Globe,
+      MessageSquare,
+      Rocket,
+      Smartphone,
+      Box,
+      Settings,
+      Users,
+      UserPlus,
+      Wrench,
+      BookOpen,
+      Briefcase,
+      Image,
+      Layers
+    };
+    const IconComponent = icons[iconName];
+    return IconComponent ? <IconComponent className="size-5 text-cardinal" /> : null;
+  };
+
   if (isMobile) {
     return (
       <div className="space-y-2">
@@ -121,47 +164,36 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
               animate="visible"
               exit="exit"
               variants={dropdownVariants}
+              className="pl-4"
             >
-              <div className="space-y-2 pl-4">
-                {megaMenu.categoryLinks.map((category, categoryIndex) => (
-                  <motion.div
-                    key={categoryIndex}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: categoryIndex * 0.1 }}
-                    className="space-y-2"
-                  >
-                    {category.title && (
-                      <p className="text-sm font-medium text-port-gore/60">
-                        {category.title}
-                      </p>
-                    )}
-                    <div className="space-y-2">
-                      {category.links.map((link, linkIndex) => (
+              {megaMenu.sections.map((section, sectionIndex) => (
+                <div key={sectionIndex} className="py-2">
+                  <h3 className="mb-2 text-sm font-semibold text-port-gore/70">
+                    {section.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {section.items.map((item, itemIndex) => (
+                      <li key={itemIndex}>
                         <Link
-                          key={linkIndex}
-                          href={link.url}
-                          className="group flex items-start rounded-lg p-2 text-sm text-port-gore hover:bg-cardinal/5 transition-all duration-200"
+                          href={item.href}
+                          className="flex items-start gap-3 rounded-md p-2 hover:bg-cardinal/5"
+                          onClick={() => setIsOpen(false)}
                         >
-                          <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
-                            {link.icon}
-                          </div>
+                          {item.icon && getIcon(item.icon)}
                           <div>
-                            <div className="font-medium group-hover:text-cardinal transition-colors duration-200">
-                              {link.title}
+                            <div className="font-medium text-port-gore">
+                              {item.title}
                             </div>
-                            {link.description && (
-                              <p className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
-                                {link.description}
-                              </p>
-                            )}
+                            <div className="text-sm text-port-gore/70">
+                              {item.description}
+                            </div>
                           </div>
                         </Link>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
@@ -183,6 +215,7 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
           <ChevronDown className="h-5 w-5 group-hover:text-cardinal transition-colors duration-200" />
         </motion.div>
       </button>
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -194,45 +227,43 @@ const SubMenu = ({ megaMenu, title, isMobile }) => {
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-port-gore/5">
-                <div className={`grid gap-x-8 gap-y-6 p-6 ${
-                  title === "Services" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"
-                }`}>
-                  {megaMenu.categoryLinks.map((category, categoryIndex) => (
+                <div className="grid gap-x-8 gap-y-6 p-6 md:grid-cols-2">
+                  {megaMenu.sections.map((section, sectionIndex) => (
                     <motion.div
-                      key={categoryIndex}
+                      key={sectionIndex}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: categoryIndex * 0.1 }}
+                      transition={{ delay: sectionIndex * 0.1 }}
                       className="space-y-3"
                     >
-                      {category.title && (
-                        <p className="text-sm font-medium text-port-gore/60">
-                          {category.title}
-                        </p>
-                      )}
-                      <div className="space-y-3">
-                        {category.links.map((link, linkIndex) => (
-                          <Link
-                            key={linkIndex}
-                            href={link.url}
-                            className="group flex items-start rounded-xl p-3 hover:bg-cardinal/5 transition-all duration-200"
-                          >
-                            <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
-                              {link.icon}
-                            </div>
-                            <div>
-                              <div className="font-medium text-port-gore group-hover:text-cardinal transition-colors duration-200">
-                                {link.title}
-                              </div>
-                              {link.description && (
-                                <p className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
-                                  {link.description}
-                                </p>
+                      <h3 className="text-sm font-medium text-port-gore/60">
+                        {section.title}
+                      </h3>
+                      <ul className="space-y-3">
+                        {section.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>
+                            <Link
+                              href={item.href}
+                              className="group flex items-start rounded-xl p-3 hover:bg-cardinal/5 transition-all duration-200"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {item.icon && (
+                                <div className="shrink-0 mr-3 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
+                                  {getIcon(item.icon)}
+                                </div>
                               )}
-                            </div>
-                          </Link>
+                              <div>
+                                <div className="font-medium text-port-gore group-hover:text-cardinal transition-colors duration-200">
+                                  {item.title}
+                                </div>
+                                <div className="mt-1 text-sm text-port-gore/60 group-hover:text-port-gore/70">
+                                  {item.description}
+                                </div>
+                              </div>
+                            </Link>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </motion.div>
                   ))}
                 </div>
@@ -251,148 +282,119 @@ SubMenu.propTypes = {
   isMobile: PropTypes.bool.isRequired,
 };
 
-export function Navbar() {
+export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 1024px)");
   const { scrollPosition, isScrollingUp } = useScrollPosition();
-  const { logo, navLinks, buttons } = navigationConfig;
-  const showNavbar = scrollPosition < 100 || isScrollingUp;
-
-  const buttonStyles = "rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200 hover:shadow-md";
-  const primaryButtonStyles = `${buttonStyles} bg-cardinal text-white hover:bg-cardinal/90`;
-  const secondaryButtonStyles = `${buttonStyles} bg-port-gore text-white hover:bg-port-gore/90`;
+  const isMobile = useMediaQuery("(max-width: 1024px)");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-sm">
-      <motion.div
-        initial={false}
-        animate={{
-          y: showNavbar ? 0 : -100,
-          opacity: showNavbar ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className="border-b border-port-gore/10"
-      >
-        <div className="mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link href={logo.url} className="-m-1.5 p-1.5">
-              <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
-            </Link>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-8">
-            {navLinks.map((navLink, index) => (
-              <div key={index}>
-                {navLink.megaMenu ? (
+    <nav
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 bg-white shadow-sm`}
+    >
+      <div className="container mx-auto px-5 py-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center">
+            <img 
+              src="/images/logos/logo.svg" 
+              alt="Empuls3 Logo" 
+              className="h-8 w-auto"
+            />
+          </Link>
+
+          {!isMobile ? (
+            <div className="flex items-center gap-8">
+              {navigationConfig.mainMenu.map((item, index) =>
+                item.megaMenu ? (
                   <SubMenu
-                    megaMenu={navLink.megaMenu}
-                    title={navLink.title}
+                    key={index}
+                    megaMenu={item.megaMenu}
+                    title={item.title}
                     isMobile={false}
                   />
                 ) : (
                   <Link
-                    href={navLink.url}
-                    className="flex items-center gap-x-2 text-sm font-medium leading-6 text-port-gore hover:text-cardinal transition-colors duration-200"
+                    key={index}
+                    href={item.href}
+                    className="text-sm font-medium text-port-gore hover:text-cardinal transition-colors duration-200"
                   >
-                    {navLink.icon}
-                    {navLink.title}
+                    {item.title}
                   </Link>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            {buttons.map((button, index) => (
+                )
+              )}
               <Button
-                key={index}
-                {...button}
-                className={index === 0 ? primaryButtonStyles : secondaryButtonStyles}
+                as={Link}
+                href={navigationConfig.ctaButton.href}
+                className="rounded-full bg-cardinal px-6 py-2.5 text-sm font-medium text-white hover:bg-cardinal/90 hover:shadow-md transition-all duration-200"
               >
-                {button.title}
+                {navigationConfig.ctaButton.title}
               </Button>
-            ))}
-          </div>
-          <div className="flex lg:hidden">
+            </div>
+          ) : (
             <button
-              type="button"
-              className="relative h-10 w-10 text-port-gore hover:text-cardinal transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex flex-col items-center justify-center"
+              aria-label="Toggle menu"
             >
-              <span className="sr-only">Open main menu</span>
-              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-2">
-                <motion.span
-                  className="block h-0.5 w-6 bg-current"
-                  animate={isMobileMenuOpen ? "open" : "closed"}
-                  variants={topLineVariants}
-                />
-                <motion.span
-                  className="block h-0.5 w-6 bg-current"
-                  animate={isMobileMenuOpen ? "open" : "closed"}
-                  variants={middleLineVariants}
-                />
-                <motion.span
-                  className="block h-0.5 w-6 bg-current"
-                  animate={isMobileMenuOpen ? "open" : "closed"}
-                  variants={bottomLineVariants}
-                />
-              </div>
+              <motion.span
+                variants={topLineVariants}
+                animate={isMobileMenuOpen ? "open" : "closed"}
+                className="mb-1.5 h-0.5 w-6 bg-port-gore"
+              />
+              <motion.span
+                variants={middleLineVariants}
+                animate={isMobileMenuOpen ? "open" : "closed"}
+                className="mb-1.5 h-0.5 w-6 bg-port-gore"
+              />
+              <motion.span
+                variants={bottomLineVariants}
+                animate={isMobileMenuOpen ? "open" : "closed"}
+                className="h-0.5 w-6 bg-port-gore"
+              />
             </button>
-          </div>
-        </div>
-      </motion.div>
+          )}
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden"
-          >
-            <div className="divide-y divide-port-gore/10 bg-white px-4 py-6 shadow-lg">
-              <div className="space-y-2 pb-6">
-                {navLinks.map((navLink, index) => (
-                  <div key={index} className="-mx-3">
-                    {navLink.megaMenu ? (
+          <AnimatePresence>
+            {isMobileMenuOpen && isMobile && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="absolute left-0 right-0 top-full bg-white px-5 py-4 shadow-lg"
+              >
+                <div className="flex flex-col gap-4">
+                  {navigationConfig.mainMenu.map((item, index) =>
+                    item.megaMenu ? (
                       <SubMenu
-                        megaMenu={navLink.megaMenu}
-                        title={navLink.title}
+                        key={index}
+                        megaMenu={item.megaMenu}
+                        title={item.title}
                         isMobile={true}
                       />
                     ) : (
                       <Link
-                        href={navLink.url}
-                        className="flex items-center gap-x-2 rounded-lg px-3 py-2 text-base font-medium leading-7 text-port-gore hover:bg-port-gore/5 hover:text-cardinal transition-all duration-200"
+                        key={index}
+                        href={item.href}
+                        className="px-4 py-2 text-port-gore hover:text-cardinal"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <div className="shrink-0 text-port-gore/60 group-hover:text-cardinal transition-colors duration-200">
-                          {navLink.icon}
-                        </div>
-                        {navLink.title}
+                        {item.title}
                       </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="space-y-4 py-6">
-                {buttons.map((button, index) => (
-                  <div key={index} className="-mx-3">
-                    <Button
-                      {...button}
-                      className={
-                        index === 0
-                          ? `w-full justify-center ${primaryButtonStyles}`
-                          : `w-full justify-center ${secondaryButtonStyles}`
-                      }
-                    >
-                      {button.title}
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                    )
+                  )}
+                  <Button
+                    as={Link}
+                    href={navigationConfig.ctaButton.href}
+                    className="rounded-full bg-cardinal px-6 py-2.5 text-sm font-medium text-white hover:bg-cardinal/90 hover:shadow-md transition-all duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {navigationConfig.ctaButton.title}
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
     </nav>
   );
-}
+};

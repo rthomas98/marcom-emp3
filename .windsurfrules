@@ -1,5 +1,7 @@
 # AI Rules for Marcom Empuls3 Project
 
+
+- DO NOT change any omponents or pages that are already working when making corrections.
 - Do not use any AI generated images.
 - Remember to use the brand colors.
 - Do not change the look and feel when following these rules. Just fix the issue at hand.
@@ -16,6 +18,7 @@
 - Please stay consistent with the micro-interactions.
 - Please stay consistent with the brand color application.
 - Please stay consistent with the responsive behavior.
+- please make all icons sizes the same as Layout12.
 
 - please rember to user the https://lucide.dev/icons/ icons throughout the project.
 
