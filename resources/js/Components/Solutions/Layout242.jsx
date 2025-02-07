@@ -44,7 +44,7 @@ const solutions = [
     title: 'Mobile Development',
     description:
       'Native and cross-platform mobile applications that engage users on any device.',
-    href: '/solutions/react-native-development'
+    href: '/solutions/react-native'
   },
   {
     icon: <Rocket className="size-8 text-cardinal" />,

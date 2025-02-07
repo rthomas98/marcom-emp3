@@ -1,322 +1,260 @@
 import { 
-  Building2, 
-  Rocket,
-  Briefcase,
-  Users,
-  HeartHandshake,
-  Newspaper,
-  Info,
-  Home,
-  Wrench,
-  Building,
-  BookOpen,
-  Network,
-  Blocks,
-  Binary,
-  Cpu,
-  LayoutGrid,
-  Boxes,
-  Gauge,
-  Settings2,
-  Lightbulb,
-  GraduationCap,
-  Code2,
-  Database,
-  Globe2,
-  Smartphone,
+  MonitorPlay, 
+  Database, 
+  Code2, 
+  Laptop2, 
+  Globe2, 
+  Smartphone, 
   ShoppingCart,
-  MonitorPlay,
-  Laptop2,
-  MessagesSquare,
-  Mail,
-  Phone,
-  Handshake,
-  CircleDollarSign,
-  GanttChart,
-  HelpCircle,
-  FileCode,
+  Globe,
+  Rocket,
+  Palette,
+  BarChart,
+  Search,
+  Building2,
   Users2,
-  Shield
-} from 'lucide-react';
+  GraduationCap,
+  Newspaper,
+  FileCode2,
+  BookOpen,
+  HelpCircle,
+  MessageSquare,
+  Settings,
+  Lightbulb,
+  WrenchIcon,
+  Briefcase,
+  FileText
+} from "lucide-react";
 
 export const navigationConfig = {
   logo: {
-    url: "/",
     src: "/images/logos/logo.svg",
-    alt: "Marcom Empuls3",
+    alt: "Marcom Empuls3 Logo",
+    url: "/"
   },
   navLinks: [
     {
-      title: "Home",
-      url: "/",
-    },
-    {
       title: "Solutions",
-      url: "/solutions",
-      icon: <Blocks className="w-5 h-5" />,
-      megaMenu: {
-        categoryLinks: [
-          {
-            title: "Development",
-            links: [
-              {
-                url: "/solutions/frontend-development",
-                icon: <MonitorPlay className="w-5 h-5" />,
-                title: "Front-End Development",
-                description: "Create engaging user interfaces and experiences",
-              },
-              {
-                url: "/solutions/backend-development",
-                icon: <Database className="w-5 h-5" />,
-                title: "Back-End Development",
-                description: "Build robust server-side applications",
-              },
-              {
-                url: "/solutions/fullstack-development",
-                icon: <Code2 className="w-5 h-5" />,
-                title: "Full-Stack Development",
-                description: "End-to-end web application development",
-              },
-              {
-                url: "/solutions/custom-software-development",
-                icon: <Laptop2 className="w-5 h-5" />,
-                title: "Custom Software",
-                description: "Tailored software solutions for your business",
-              },
-            ],
-          },
-          {
-            title: "Specialized Solutions",
-            links: [
-              {
-                url: "/solutions/progressive-web-apps",
-                icon: <Globe2 className="w-5 h-5" />,
-                title: "Progressive Web Apps",
-                description: "Modern web apps with native-like features",
-              },
-              {
-                url: "/solutions/react-native-development",
-                icon: <Smartphone className="w-5 h-5" />,
-                title: "React Native Development",
-                description: "Cross-platform mobile applications",
-              },
-              {
-                url: "/solutions/ecommerce-development",
-                icon: <ShoppingCart className="w-5 h-5" />,
-                title: "E-commerce Development",
-                description: "Build powerful online stores",
-              },
-            ],
-          },
-        ],
-      },
+      subMenu: [
+        {
+          heading: "Development Services",
+          subMenuLinks: [
+            {
+              title: "Front-End Development",
+              description: "Create stunning user interfaces with modern frameworks",
+              url: "/solutions/frontend",
+              icon: <MonitorPlay size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Back-End Development",
+              description: "Build robust server-side applications",
+              url: "/solutions/backend",
+              icon: <Database size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Full-Stack Development",
+              description: "End-to-end development solutions",
+              url: "/solutions/fullstack",
+              icon: <Code2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Custom Software",
+              description: "Tailored software solutions for your business",
+              url: "/solutions/custom-software",
+              icon: <Laptop2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        },
+        {
+          heading: "Specialized Solutions",
+          subMenuLinks: [
+            {
+              title: "WordPress Development",
+              description: "Custom WordPress themes and plugins",
+              url: "/solutions/wordpress",
+              icon: <Globe2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "E-commerce Development",
+              description: "Build your online store with modern technologies",
+              url: "/solutions/ecommerce",
+              icon: <ShoppingCart size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "HubSpot Development",
+              description: "Custom HubSpot CMS development and integration",
+              url: "/solutions/hubspot",
+              icon: <Globe size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "MVP Development",
+              description: "Rapid prototyping and minimum viable products",
+              url: "/solutions/mvp",
+              icon: <Rocket size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Progressive Web Apps",
+              description: "Modern web applications with native-like features",
+              url: "/solutions/progressive-web-apps",
+              icon: <Smartphone size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "React Native Development",
+              description: "Cross-platform mobile applications",
+              url: "/solutions/react-native",
+              icon: <Smartphone size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Software Development & Design",
+              description: "End-to-end software design and development",
+              url: "/solutions/software-development-design",
+              icon: <Palette size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        }
+      ]
     },
     {
       title: "Services",
-      url: "/services",
-      icon: <Settings2 className="w-5 h-5" />,
-      megaMenu: {
-        categoryLinks: [
-          {
-            title: "Development Services",
-            links: [
-              {
-                url: "/services/web-development",
-                icon: <Globe2 className="w-5 h-5" />,
-                title: "Web Development",
-                description: "Custom websites and web applications",
-              },
-              {
-                url: "/services/mobile-development",
-                icon: <Smartphone className="w-5 h-5" />,
-                title: "Mobile Development",
-                description: "Native and cross-platform mobile apps",
-              },
-              {
-                url: "/services/cloud-solutions",
-                icon: <Network className="w-5 h-5" />,
-                title: "Cloud Solutions",
-                description: "Scalable cloud infrastructure and services",
-              },
-              {
-                url: "/services/ui-ux-design",
-                icon: <LayoutGrid className="w-5 h-5" />,
-                title: "UI/UX Design",
-                description: "User-centered design solutions",
-              },
-            ],
-          },
-          {
-            title: "Professional Services",
-            links: [
-              {
-                url: "/services/consulting",
-                icon: <Wrench className="w-5 h-5" />,
-                title: "Technical Consulting",
-                description: "Expert guidance and solutions",
-              },
-              {
-                url: "/services/team-augmentation",
-                icon: <Users2 className="w-5 h-5" />,
-                title: "Team Augmentation",
-                description: "Skilled developers for your team",
-              },
-              {
-                url: "/services/project-management",
-                icon: <GanttChart className="w-5 h-5" />,
-                title: "Project Management",
-                description: "End-to-end project delivery",
-              },
-              {
-                url: "/services/maintenance",
-                icon: <Settings2 className="w-5 h-5" />,
-                title: "Maintenance & Support",
-                description: "Ongoing technical support",
-              },
-            ],
-          },
-          {
-            title: "Enterprise Solutions",
-            links: [
-              {
-                url: "/services/digital-transformation",
-                icon: <Cpu className="w-5 h-5" />,
-                title: "Digital Transformation",
-                description: "Modernize your business",
-              },
-              {
-                url: "/services/system-integration",
-                icon: <Blocks className="w-5 h-5" />,
-                title: "System Integration",
-                description: "Seamless software integration",
-              },
-              {
-                url: "/services/devops",
-                icon: <Binary className="w-5 h-5" />,
-                title: "DevOps Services",
-                description: "Streamline your development",
-              },
-              {
-                url: "/services/security",
-                icon: <Shield className="w-5 h-5" />,
-                title: "Security Services",
-                description: "Protect your digital assets",
-              },
-            ],
-          },
-        ],
-      },
+      subMenu: [
+        {
+          heading: "Core Services",
+          subMenuLinks: [
+            {
+              title: "Software Engineering",
+              description: "Expert software engineering and development services",
+              url: "/services/software-engineering",
+              icon: <Code2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Application Services",
+              description: "Custom application development and maintenance",
+              url: "/services/application",
+              icon: <Laptop2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "DevOps Services",
+              description: "Streamline your development and operations",
+              url: "/services/devops",
+              icon: <Settings size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "IT Consulting",
+              description: "Strategic technology consulting and planning",
+              url: "/services/it-consulting-services",
+              icon: <Lightbulb size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        },
+        {
+          heading: "Additional Services",
+          subMenuLinks: [
+            {
+              title: "Maintenance & Support",
+              description: "Ongoing maintenance and technical support",
+              url: "/services/maintenance-and-support",
+              icon: <WrenchIcon size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Smart Teams",
+              description: "Dedicated development teams for your projects",
+              url: "/services/smart-teams",
+              icon: <Users2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        }
+      ]
     },
     {
       title: "Company",
-      url: "/company",
-      icon: <Building className="w-5 h-5" />,
-      megaMenu: {
-        categoryLinks: [
-          {
-            title: "About Us",
-            links: [
-              {
-                url: "/company/about",
-                icon: <Info className="w-5 h-5" />,
-                title: "Our Story",
-                description: "Learn about our mission and values",
-              },
-              {
-                url: "/company/team",
-                icon: <Users className="w-5 h-5" />,
-                title: "Our Team",
-                description: "Meet the people behind our success",
-              },
-              {
-                url: "/company/careers",
-                icon: <GraduationCap className="w-5 h-5" />,
-                title: "Careers",
-                description: "Join our growing team",
-              },
-            ],
-          },
-          {
-            title: "Innovation",
-            links: [
-              {
-                url: "/company/technology",
-                icon: <FileCode className="w-5 h-5" />,
-                title: "Technology",
-                description: "Our tech stack and innovations",
-              },
-              {
-                url: "/company/research",
-                icon: <Lightbulb className="w-5 h-5" />,
-                title: "Research & Development",
-                description: "Exploring new possibilities",
-              },
-            ],
-          },
-        ],
-      },
+      subMenu: [
+        {
+          heading: "About Us",
+          subMenuLinks: [
+            {
+              title: "Our Story",
+              description: "Learn about our journey and mission",
+              url: "/company/about",
+              icon: <Building2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Our Team",
+              description: "Meet our talented team members",
+              url: "/company/our-team",
+              icon: <Users2 size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Careers",
+              description: "Join our growing team",
+              url: "/company/careers",
+              icon: <Briefcase size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        },
+        {
+          heading: "News & Updates",
+          subMenuLinks: [
+            {
+              title: "Latest News",
+              description: "Stay updated with our latest announcements",
+              url: "/company/latest-news",
+              icon: <Newspaper size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Case Studies",
+              description: "Explore our success stories",
+              url: "/resources/case-studies",
+              icon: <FileText size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        }
+      ]
     },
     {
       title: "Resources",
-      url: "/resources",
-      icon: <BookOpen className="w-5 h-5" />,
-      megaMenu: {
-        categoryLinks: [
-          {
-            title: "Learn",
-            links: [
-              {
-                url: "/resources/blog",
-                icon: <Newspaper className="w-5 h-5" />,
-                title: "Blog",
-                description: "Latest insights and updates",
-              },
-              {
-                url: "/resources/documentation",
-                icon: <FileCode className="w-5 h-5" />,
-                title: "Documentation",
-                description: "Technical guides and references",
-              },
-              {
-                url: "/resources/tutorials",
-                icon: <GraduationCap className="w-5 h-5" />,
-                title: "Tutorials",
-                description: "Step-by-step learning resources",
-              },
-            ],
-          },
-          {
-            title: "Support",
-            links: [
-              {
-                url: "/resources/help",
-                icon: <HelpCircle className="w-5 h-5" />,
-                title: "Help Center",
-                description: "Find answers to common questions",
-              },
-              {
-                url: "/resources/contact",
-                icon: <Phone className="w-5 h-5" />,
-                title: "Contact Us",
-                description: "Get in touch with our team",
-              },
-              {
-                url: "/resources/chat",
-                icon: <MessagesSquare className="w-5 h-5" />,
-                title: "Live Chat",
-                description: "Real-time support when you need it",
-              },
-            ],
-          },
-        ],
-      },
-    },
+      subMenu: [
+        {
+          heading: "Knowledge Base",
+          subMenuLinks: [
+            {
+              title: "Blog",
+              description: "Insights and updates from our team",
+              url: "/resources/blog",
+              icon: <BookOpen size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Documentation",
+              description: "Technical guides and API documentation",
+              url: "/resources/documentation",
+              icon: <BookOpen size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        },
+        {
+          heading: "Support",
+          subMenuLinks: [
+            {
+              title: "Help Center",
+              description: "Get help and support",
+              url: "/resources/help-center",
+              icon: <HelpCircle size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Contact Support",
+              description: "Get in touch with our support team",
+              url: "/resources/contact-support",
+              icon: <MessageSquare size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        }
+      ]
+    }
   ],
   buttons: [
     {
-      title: "Get Started",
-      size: "sm",
-      variant: "primary",
-    },
-  ],
+      title: "Contact Us",
+      url: "/resources/contact",
+      primary: true
+    }
+  ]
 };

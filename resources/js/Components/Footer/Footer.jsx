@@ -1,19 +1,16 @@
-import { Button } from "@relume_io/relume-ui";
 import { Link } from "@inertiajs/react";
-import { footerConfig } from "./footerConfig";
+import PropTypes from "prop-types";
 
-export default function Footer() {
-  const {
-    logo,
-    newsletterDescription,
-    inputPlaceholder,
-    button,
-    termsAndConditions,
-    columnLinks,
-    footerText,
-    footerLinks,
-  } = footerConfig;
-
+export default function Footer({ 
+  logo,
+  newsletterDescription,
+  inputPlaceholder,
+  button,
+  termsAndConditions,
+  columnLinks,
+  footerText,
+  footerLinks 
+}) {
   return (
     <footer className="bg-athens-gray">
       <div className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 sm:py-12 md:py-16 lg:px-8 lg:py-20">
@@ -39,12 +36,12 @@ export default function Footer() {
                   />
                 </div>
                 <div className="w-full sm:w-auto">
-                  <Button
-                    {...button}
-                    className="w-full rounded-full bg-cardinal px-6 py-2 text-sm font-medium text-white hover:bg-cardinal/90 focus:outline-none focus:ring-0 sm:w-auto"
+                  <Link
+                    href={button.url}
+                    className="inline-block w-full rounded-full bg-cardinal px-6 py-2 text-center text-sm font-medium text-white hover:bg-cardinal/90 focus:outline-none focus:ring-0 sm:w-auto"
                   >
                     {button.title}
-                  </Button>
+                  </Link>
                 </div>
               </form>
               <div
@@ -55,36 +52,21 @@ export default function Footer() {
           </div>
 
           {/* Links Section */}
-          <div className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-8">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-12">
             {columnLinks.map((column, columnIndex) => (
-              <div 
-                key={columnIndex} 
-                className="flex flex-col items-center md:items-start"
-              >
-                <h3 className="mb-4 font-heading text-sm font-semibold text-port-gore text-center md:text-left">
+              <div key={columnIndex}>
+                <h3 className="mb-4 text-sm font-semibold text-port-gore sm:mb-6">
                   {column.title}
                 </h3>
-                <ul className="space-y-3 sm:space-y-4 flex flex-col items-center md:items-start">
+                <ul className="space-y-3">
                   {column.links.map((link, linkIndex) => (
-                    <li key={linkIndex} className="text-center md:text-left">
-                      {link.icon ? (
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 text-sm text-port-gore hover:text-cardinal"
-                        >
-                          {link.icon}
-                          <span>{link.title}</span>
-                        </a>
-                      ) : (
-                        <Link
-                          href={link.url}
-                          className="text-sm text-port-gore hover:text-cardinal"
-                        >
-                          {link.title}
-                        </Link>
-                      )}
+                    <li key={linkIndex}>
+                      <Link
+                        href={link.url}
+                        className="text-sm text-port-gore/60 hover:text-cardinal"
+                      >
+                        {link.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -94,25 +76,55 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 border-t border-port-gore/10 pt-6 sm:mt-12 sm:pt-8">
-          <div className="flex flex-col items-center space-y-6 md:flex-row md:justify-between md:space-y-0">
-            <div className="flex flex-col items-center space-y-6 md:flex-row md:space-x-6 md:space-y-0">
-              {footerLinks.map((link, index) => (
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-port-gore/10 pt-8 text-center sm:mt-12 sm:pt-12 md:flex-row md:text-left">
+          <p className="text-sm text-port-gore/60">{footerText}</p>
+          <ul className="flex flex-wrap justify-center gap-6 md:justify-end">
+            {footerLinks.map((link, index) => (
+              <li key={index}>
                 <Link
-                  key={index}
                   href={link.url}
-                  className="text-sm text-port-gore/70 hover:text-cardinal whitespace-nowrap"
+                  className="text-sm text-port-gore/60 hover:text-cardinal"
                 >
                   {link.title}
                 </Link>
-              ))}
-            </div>
-            <p className="text-sm text-port-gore/70 text-center md:text-left">
-              {footerText}
-            </p>
-          </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
   );
 }
+
+Footer.propTypes = {
+  logo: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  }).isRequired,
+  newsletterDescription: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string.isRequired,
+  button: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  termsAndConditions: PropTypes.string.isRequired,
+  columnLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
+  footerText: PropTypes.string.isRequired,
+  footerLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

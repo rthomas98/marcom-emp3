@@ -25,35 +25,35 @@ Route::get('/solutions', function () {
     return Inertia::render('Solutions/Overview');
 })->name('solutions');
 
-Route::get('/solutions/backend-development', function () {
-    return Inertia::render('Solutions/BackEndDevelopment');
-})->name('solutions.backend');
-
-Route::get('/solutions/frontend-development', function () {
+Route::get('/solutions/frontend', function () {
     return Inertia::render('Solutions/FrontEndDevelopment');
 })->name('solutions.frontend');
 
-Route::get('/solutions/fullstack-development', function () {
+Route::get('/solutions/backend', function () {
+    return Inertia::render('Solutions/BackEndDevelopment');
+})->name('solutions.backend');
+
+Route::get('/solutions/fullstack', function () {
     return Inertia::render('Solutions/FullStackDevelopment');
 })->name('solutions.fullstack');
 
-Route::get('/solutions/custom-software-development', function () {
+Route::get('/solutions/custom-software', function () {
     return Inertia::render('Solutions/CustomSoftwareDevelopment');
 })->name('solutions.custom');
 
-Route::get('/solutions/wordpress-development', function () {
+Route::get('/solutions/wordpress', function () {
     return Inertia::render('Solutions/WordPressDevelopment');
 })->name('solutions.wordpress');
 
-Route::get('/solutions/ecommerce-development', function () {
+Route::get('/solutions/ecommerce', function () {
     return Inertia::render('Solutions/EcommerceDevelopment');
 })->name('solutions.ecommerce');
 
-Route::get('/solutions/hubspot-development', function () {
+Route::get('/solutions/hubspot', function () {
     return Inertia::render('Solutions/HubSpotDevelopment');
 })->name('solutions.hubspot');
 
-Route::get('/solutions/mvp-development', function () {
+Route::get('/solutions/mvp', function () {
     return Inertia::render('Solutions/MvpDevelopment');
 })->name('solutions.mvp');
 
@@ -63,9 +63,9 @@ Route::get('/solutions/progressive-web-apps', function () {
 
 Route::get('/solutions/software-development-design', function () {
     return Inertia::render('Solutions/SoftwareDevelopmentDesign');
-})->name('solutions.design');
+})->name('solutions.software-design');
 
-Route::get('/solutions/react-native-development', function () {
+Route::get('/solutions/react-native', function () {
     return Inertia::render('Solutions/ReactNativeDevelopment');
 })->name('solutions.react-native');
 
@@ -74,29 +74,29 @@ Route::get('/services', function () {
     return Inertia::render('Services/Overview');
 })->name('services');
 
-Route::get('/services/application-services', function () {
+Route::get('/services/software-engineering', function () {
+    return Inertia::render('Services/SoftwareEngineeringServices');
+})->name('services.software-engineering');
+
+Route::get('/services/application', function () {
     return Inertia::render('Services/ApplicationServices');
 })->name('services.application');
 
-Route::get('/services/devops-services', function () {
+Route::get('/services/devops', function () {
     return Inertia::render('Services/DevOpsServices');
 })->name('services.devops');
 
-Route::get('/services/it-consulting', function () {
+Route::get('/services/it-consulting-services', function () {
     return Inertia::render('Services/ITConsultingServices');
 })->name('services.consulting');
 
-Route::get('/services/maintenance-support', function () {
+Route::get('/services/maintenance-and-support', function () {
     return Inertia::render('Services/MaintenanceAndSupport');
 })->name('services.maintenance');
 
 Route::get('/services/smart-teams', function () {
     return Inertia::render('Services/SmartTeams');
 })->name('services.teams');
-
-Route::get('/services/software-engineering', function () {
-    return Inertia::render('Services/SoftwareEngineeringServices');
-})->name('services.engineering');
 
 // Industries Routes
 Route::get('/industries', function () {
@@ -107,11 +107,11 @@ Route::get('/industries/healthcare', function () {
     return Inertia::render('Industries/Healthcare');
 })->name('industries.healthcare');
 
-Route::get('/industries/finance-banking', function () {
+Route::get('/industries/finance', function () {
     return Inertia::render('Industries/FinanceBanking');
 })->name('industries.finance');
 
-Route::get('/industries/ecommerce-retail', function () {
+Route::get('/industries/ecommerce', function () {
     return Inertia::render('Industries/EcommerceRetail');
 })->name('industries.retail');
 
@@ -136,13 +136,21 @@ Route::get('/company/about', function () {
     return Inertia::render('Company/AboutUs');
 })->name('company.about');
 
+Route::get('/company/our-team', function () {
+    return Inertia::render('Company/Team');
+})->name('company.team');
+
+Route::get('/company/careers', function () {
+    return Inertia::render('Company/Careers');
+})->name('company.careers');
+
 Route::get('/company/partner', function () {
     return Inertia::render('Company/BecomePartner');
 })->name('company.partner');
 
-Route::get('/company/news', function () {
-    return Inertia::render('Company/NewsUpdates');
-})->name('company.news');
+Route::get('/company/latest-news', function () {
+    return Inertia::render('Company/LatestNews');
+})->name('company.latest-news');
 
 // Resources Routes
 Route::get('/resources/blog', function () {
@@ -151,7 +159,19 @@ Route::get('/resources/blog', function () {
 
 Route::get('/resources/case-studies', function () {
     return Inertia::render('Resources/CaseStudies');
-})->name('resources.cases');
+})->name('resources.case-studies');
+
+Route::get('/resources/documentation', function () {
+    return Inertia::render('Resources/Documentation');
+})->name('resources.docs');
+
+Route::get('/resources/help-center', function () {
+    return Inertia::render('Resources/HelpCenter');
+})->name('resources.help');
+
+Route::get('/resources/contact-support', function () {
+    return Inertia::render('Resources/ContactSupport');
+})->name('resources.support');
 
 Route::get('/resources/faqs', function () {
     return Inertia::render('Resources/Faqs');

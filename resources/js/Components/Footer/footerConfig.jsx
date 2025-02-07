@@ -16,6 +16,7 @@ export const footerConfig = {
   inputPlaceholder: "Enter your email",
   button: {
     title: "Subscribe",
+    url: "/newsletter/subscribe",
     variant: "secondary",
     size: "sm",
   },
@@ -30,11 +31,11 @@ export const footerConfig = {
     {
       title: "Solutions",
       links: [
-        { title: "Front-End Development", url: "/solutions/frontend-development" },
-        { title: "Back-End Development", url: "/solutions/backend-development" },
-        { title: "Full-Stack Development", url: "/solutions/fullstack-development" },
-        { title: "Custom Software", url: "/solutions/custom-software-development" },
-        { title: "E-commerce Development", url: "/solutions/ecommerce-development" },
+        { title: "Front-End Development", url: "/solutions/frontend" },
+        { title: "Back-End Development", url: "/solutions/backend" },
+        { title: "Full-Stack Development", url: "/solutions/fullstack" },
+        { title: "Custom Software", url: "/solutions/custom-software" },
+        { title: "E-commerce Development", url: "/solutions/ecommerce" },
       ],
     },
     {
@@ -42,7 +43,7 @@ export const footerConfig = {
       links: [
         { title: "About Us", url: "/company/about" },
         { title: "Become a Partner", url: "/company/partner" },
-        { title: "News & Updates", url: "/company/news" },
+        { title: "News & Updates", url: "/company/latest-news" },
         { title: "Contact Us", url: "/resources/contact" },
         { title: "Case Studies", url: "/resources/case-studies" },
       ],
@@ -78,8 +79,9 @@ export const footerConfig = {
       ],
     },
   ],
-  footerText: "© 2024 Marcom Empuls3. All rights reserved.",
+  footerText: " 2024 Marcom Empuls3. All rights reserved.",
   footerLinks: [
+    { title: "Latest News", url: "/company/latest-news" },
     { title: "Privacy Policy", url: "/privacy-policy" },
     { title: "Terms of Service", url: "/terms-of-service" },
     { title: "Cookie Policy", url: "/cookie-policy" },

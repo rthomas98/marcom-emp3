@@ -69,7 +69,7 @@ export const navigationConfig = {
               {
                 title: "React Native Development",
                 description: "Cross-platform mobile apps",
-                href: "/solutions/react-native-development",
+                href: "/solutions/react-native",
                 icon: "Smartphone"
               }
             ]
