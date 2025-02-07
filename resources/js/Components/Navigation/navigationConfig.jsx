@@ -23,7 +23,10 @@ import {
   Lightbulb,
   WrenchIcon,
   Briefcase,
-  FileText
+  FileText,
+  Brain,
+  Network,
+  ServerCog
 } from "lucide-react";
 
 export const navigationConfig = {
@@ -143,6 +146,29 @@ export const navigationConfig = {
               description: "Strategic technology consulting and planning",
               url: "/services/it-consulting-services",
               icon: <Lightbulb size={24} strokeWidth={1.5} className="text-cardinal" />
+            }
+          ]
+        },
+        {
+          heading: "AI & ML Services",
+          subMenuLinks: [
+            {
+              title: "AI & ML Development",
+              description: "Custom AI solutions and machine learning models",
+              url: "/services/ai-ml-development",
+              icon: <Brain size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "Foundation Models",
+              description: "Building and fine-tuning foundation models",
+              url: "/services/foundation-models",
+              icon: <Network size={24} strokeWidth={1.5} className="text-cardinal" />
+            },
+            {
+              title: "MLOps & AI Infrastructure",
+              description: "End-to-end ML infrastructure and deployment",
+              url: "/services/mlops-infrastructure",
+              icon: <ServerCog size={24} strokeWidth={1.5} className="text-cardinal" />
             }
           ]
         },

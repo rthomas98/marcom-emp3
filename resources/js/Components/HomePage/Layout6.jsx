@@ -56,18 +56,28 @@ export const Layout6 = ({
 export const Layout6Defaults = {
   subHeadings: [
     {
-      title: "Streamlined Solutions",
+      title: "AI & ML Solutions",
       description:
-        "Optimize your workflows and boost productivity with our intuitive tools and automated processes.",
+        "Build and deploy custom AI models and foundation models tailored to your business needs.",
     },
     {
-      title: "Data-Driven Growth",
+      title: "MLOps Excellence",
       description:
-        "Make informed decisions with real-time analytics and comprehensive insights into your business performance.",
+        "End-to-end ML infrastructure and deployment with comprehensive monitoring and scaling capabilities.",
+    },
+    {
+      title: "Data-Driven Innovation",
+      description:
+        "Transform your business with AI-powered analytics and intelligent automation solutions.",
+    },
+    {
+      title: "Full-Stack Development",
+      description:
+        "Create powerful web applications with modern frameworks and cloud-native architecture.",
     },
   ],
   image: {
     src: "/images/placeholder-dashboard.svg",
-    alt: "Enterprise dashboard interface preview",
+    alt: "AI-powered enterprise dashboard interface",
   },
 };

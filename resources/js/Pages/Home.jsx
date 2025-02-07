@@ -15,8 +15,8 @@ export default function Home() {
     return (
         <MarcomLayout>
             <Header79 
-                heading="Empowering Digital Innovation"
-                description="Transform your business with cutting-edge solutions that drive growth, engagement, and success. Experience the future of digital transformation today."
+                heading="Empowering Digital Innovation with AI"
+                description="Transform your business with cutting-edge AI solutions and custom foundation models. Experience the future of digital transformation powered by machine learning."
                 buttons={[
                     { title: "Get Started", variant: "primary" },
                     { title: "Learn More", variant: "secondary-alt" }

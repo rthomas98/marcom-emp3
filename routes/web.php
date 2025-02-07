@@ -90,6 +90,18 @@ Route::get('/services/it-consulting-services', function () {
     return Inertia::render('Services/ITConsultingServices');
 })->name('services.consulting');
 
+Route::get('/services/ai-ml-development', function () {
+    return Inertia::render('Services/AiMlDevelopment');
+})->name('services.ai');
+
+Route::get('/services/foundation-models', function () {
+    return Inertia::render('Services/FoundationModels');
+})->name('services.foundation');
+
+Route::get('/services/mlops-infrastructure', function () {
+    return Inertia::render('Services/MlopsInfrastructure');
+})->name('services.mlops');
+
 Route::get('/services/maintenance-and-support', function () {
     return Inertia::render('Services/MaintenanceAndSupport');
 })->name('services.maintenance');
