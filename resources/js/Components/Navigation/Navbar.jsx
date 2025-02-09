@@ -151,7 +151,7 @@ export const Navbar = () => {
   }
 
   return (
-    <section className="flex w-full items-center border-b border-port-gore/10 bg-white lg:min-h-18 lg:px-[5%]">
+    <section className="fixed top-0 left-0 right-0 z-50 flex w-full items-center border-b border-port-gore/10 bg-white/95 backdrop-blur-sm transition-all duration-300 lg:min-h-18 lg:px-[5%]">
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <Link href={logo.url} className="flex items-center gap-2">

@@ -1,98 +1,56 @@
-import { Button } from "@relume_io/relume-ui";
 import React from "react";
+import { Link } from "@inertiajs/react";
+import { ArrowRight } from "lucide-react";
 
-const imageColumns = [
-  { className: "-mt-[20%] animate-loop-vertically-top" },
-  { className: "-mt-[50%] animate-loop-vertically-bottom" },
-  { className: "animate-loop-vertically-top" },
-  { className: "mt-[-30%] animate-loop-vertically-bottom" },
-  { className: "mt-[-20%] animate-loop-vertically-top" },
-];
-
-export const Header79 = (props) => {
-  const { heading, description, buttons, imagesPartOne, imagesPartTwo } = {
-    ...Header79Defaults,
-    ...props,
-  };
-
+export const Header79 = ({ 
+  heading,
+  description,
+  buttons = [],
+  ...props 
+}) => {
   return (
-    <section className="relative min-h-svh bg-port-gore">
-      {/* Background Image Grid */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        <div className="grid h-full w-full grid-cols-2 gap-4 px-4 md:grid-cols-3 lg:grid-cols-5">
-          {imageColumns.map((column, index) => (
-            <div key={index} className={`grid h-[200%] grid-cols-1 gap-4 ${column.className}`}>
-              {[...imagesPartOne, ...imagesPartTwo].map((image, imgIndex) => (
-                <div key={imgIndex} className="relative aspect-[3/4] w-full">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-              {[...imagesPartOne, ...imagesPartTwo].map((image, imgIndex) => (
-                <div key={`duplicate-${imgIndex}`} className="relative aspect-[3/4] w-full">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-port-gore to-port-gore/90 px-[5%] pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32">
+      {/* Background gradient effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-cardinal/20 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-koromiko/10 via-transparent to-transparent"></div>
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: 'linear-gradient(var(--port-gore-10) 1px, transparent 1px), linear-gradient(90deg, var(--port-gore-10) 1px, transparent 1px)',
+        backgroundSize: '4rem 4rem',
+        opacity: '0.1'
+      }}></div>
 
-      {/* Content */}
-      <div className="relative z-10 px-[5%]">
-        <div className="flex min-h-svh items-center">
-          <div className="container mx-auto py-16 md:py-24 lg:py-28">
-            <div className="mx-auto max-w-lg text-center">
-              <h1 className="mb-5 font-heading text-5xl font-bold text-white md:mb-6 md:text-7xl lg:text-8xl">
-                {heading}
-              </h1>
-              <p className="text-lg text-white/90 md:text-xl">
-                {description}
-              </p>
-              <div className="mt-8 flex items-center justify-center gap-4">
-                {buttons.map((button, index) => (
-                  <Button
-                    key={index}
-                    {...button}
-                    className={`rounded-full px-6 py-3 text-base font-medium transition-colors duration-200 ${
-                      index === 0
-                        ? "bg-cardinal text-white hover:bg-cardinal/90"
-                        : "bg-white text-port-gore hover:bg-white/90"
-                    }`}
-                  >
-                    {button.title}
-                  </Button>
-                ))}
-              </div>
-            </div>
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="font-heading mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+            {heading}
+          </h1>
+          <p className="font-sans mb-8 text-lg text-white/80 md:text-xl">
+            {description}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {buttons?.map((button, index) => (
+              <Link
+                key={index}
+                href={button.url || '#'}
+                className={`${
+                  button.variant === 'primary'
+                    ? 'bg-cardinal text-white hover:bg-cardinal/90'
+                    : 'bg-white/10 text-white backdrop-blur-sm hover:bg-white/20'
+                } font-sans inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300`}
+              >
+                {button.title}
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            ))}
           </div>
         </div>
+
+        {/* Floating elements */}
+        <div className="absolute -left-4 top-1/4 h-24 w-24 animate-float rounded-2xl bg-gradient-to-br from-cardinal to-cardinal/50 blur-xl"></div>
+        <div className="absolute -right-8 bottom-1/4 h-32 w-32 animate-float-delay rounded-full bg-gradient-to-br from-koromiko to-koromiko/50 blur-xl"></div>
       </div>
     </section>
   );
-};
-
-export const Header79Defaults = {
-  heading: "Empowering Digital Innovation",
-  description:
-    "Transform your business with cutting-edge solutions that drive growth, engagement, and success. Experience the future of digital transformation today.",
-  buttons: [
-    { title: "Get Started", variant: "primary" },
-    { title: "Learn More", variant: "secondary-alt" }
-  ],
-  imagesPartOne: Array(4).fill({
-    src: "/images/placeholder.svg",
-    alt: "Empuls3 placeholder image",
-  }),
-  imagesPartTwo: Array(4).fill({
-    src: "/images/placeholder.svg",
-    alt: "Empuls3 placeholder image",
-  }),
 };

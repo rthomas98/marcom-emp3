@@ -17,8 +17,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
-                heading: ['Asap', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', 'sans-serif'],
+                heading: ['Asap', 'sans-serif'],
             },
             colors: {
                 "port-gore": "#1F1946",
@@ -40,12 +40,18 @@ export default {
                 'loop-vertically-bottom': {
                     '0%': { transform: 'translateY(-50%)' },
                     '100%': { transform: 'translateY(0)' }
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
                 }
             },
             animation: {
                 'marquee-horizontally': 'marquee-horizontally 40s linear infinite',
                 'loop-vertically-top': 'loop-vertically-top 40s linear infinite',
-                'loop-vertically-bottom': 'loop-vertically-bottom 40s linear infinite'
+                'loop-vertically-bottom': 'loop-vertically-bottom 40s linear infinite',
+                'float': 'float 6s ease-in-out infinite',
+                'float-delay': 'float 6s ease-in-out 2s infinite',
             },
         },
     },

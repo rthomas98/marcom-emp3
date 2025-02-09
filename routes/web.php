@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvitationController;
+use App\Mail\TestEmail;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -205,6 +207,15 @@ Route::get('/terms-of-service', function () {
 Route::get('/cookie-policy', function () {
     return Inertia::render('Legal/CookiePolicy');
 })->name('legal.cookies');
+
+Route::get('/test-email', function () {
+    try {
+        Mail::to('rob@empuls3.com')->send(new TestEmail());
+        return 'Test email sent successfully!';
+    } catch (\Exception $e) {
+        return 'Error sending email: ' . $e->getMessage();
+    }
+})->name('test.email');
 
 Route::get('invitation/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
 Route::post('invitation/{token}', [InvitationController::class, 'accept']);
