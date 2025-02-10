@@ -2,8 +2,8 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export const Layout6 = ({ 
-  heading = "Unlock Your Business Potential",
-  description = "Drive growth and engagement with our comprehensive suite of solutions designed to transform your digital presence and maximize your business impact.",
+  heading = "Expert Software Development Solutions",
+  description = "Transform your ideas into powerful digital solutions with our expert development team. We deliver custom software that drives business growth and enhances user experience.",
   subHeadings = Layout6Defaults.subHeadings,
   image = Layout6Defaults.image,
   ...props 
@@ -79,28 +79,28 @@ export const Layout6 = ({
 export const Layout6Defaults = {
   subHeadings: [
     {
-      title: "AI & ML Solutions",
+      title: "Custom Development",
       description:
-        "Build and deploy custom AI models and foundation models tailored to your business needs.",
+        "Tailored software solutions built with modern technologies to meet your unique business requirements.",
     },
     {
-      title: "MLOps Excellence",
+      title: "E-commerce Solutions",
       description:
-        "End-to-end ML infrastructure and deployment with comprehensive monitoring and scaling capabilities.",
+        "Scalable online stores and marketplaces that deliver exceptional shopping experiences.",
     },
     {
-      title: "Data-Driven Innovation",
+      title: "Web Applications",
       description:
-        "Transform your business with AI-powered analytics and intelligent automation solutions.",
+        "Responsive and performant web applications that work seamlessly across all devices.",
     },
     {
-      title: "Full-Stack Development",
+      title: "Technical Consulting",
       description:
-        "Create powerful web applications with modern frameworks and cloud-native architecture.",
+        "Expert guidance on architecture, technology stack, and development best practices.",
     },
   ],
   image: {
-    src: "/images/placeholder-dashboard.svg",
-    alt: "AI-powered enterprise dashboard interface",
+    src: "/images/emp/rob_thomas23_African_American_developers_working_in_meetings_st_67cd8699-d588-4e33-901a-4b41eb725a0c.png",
+    alt: "Development team collaborating on software project",
   },
 };

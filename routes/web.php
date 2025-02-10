@@ -2,15 +2,36 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\InsightController;
 use App\Mail\TestEmail;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Insight;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
-});
+    $insights = Insight::published()
+        ->latest('published_at')
+        ->take(3)
+        ->get()
+        ->map(function ($insight) {
+            return [
+                'id' => $insight->id,
+                'slug' => $insight->slug,
+                'title' => $insight->title,
+                'description' => $insight->description,
+                'category' => $insight->category,
+                'read_time' => $insight->read_time,
+                'image' => $insight->image,
+                'published_at' => $insight->published_at,
+            ];
+        });
+
+    return Inertia::render('Home', [
+        'insights' => $insights,
+    ]);
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -194,6 +215,17 @@ Route::get('/resources/faqs', function () {
 Route::get('/resources/contact', function () {
     return Inertia::render('Resources/Contact');
 })->name('resources.contact');
+
+// Insights Routes
+Route::get('/insights', [InsightController::class, 'index'])->name('insights.index');
+Route::get('/insights/{insight:slug}', [InsightController::class, 'show'])->name('insights.show');
+
+// Admin Insights Routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/admin/insights', [InsightController::class, 'store'])->name('insights.store');
+    Route::put('/admin/insights/{insight:slug}', [InsightController::class, 'update'])->name('insights.update');
+    Route::delete('/admin/insights/{insight:slug}', [InsightController::class, 'destroy'])->name('insights.destroy');
+});
 
 // Legal Routes
 Route::get('/privacy-policy', function () {

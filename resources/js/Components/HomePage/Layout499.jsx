@@ -1,16 +1,7 @@
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-  VideoIframe,
-} from "@relume_io/relume-ui";
-import { RxChevronRight } from "react-icons/rx";
-import { FaCirclePlay } from "react-icons/fa6";
+import React from 'react';
+import { Link } from "@inertiajs/react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@relume_io/relume-ui";
+import { ArrowRight } from 'lucide-react';
 
 export const Layout499 = (props) => {
   const { tagline, heading, description, tabs, buttons, defaultTabValue } = {
@@ -27,18 +18,20 @@ export const Layout499 = (props) => {
           <p className="text-port-gore/70 md:text-lg">{description}</p>
           <div className="mt-6 flex items-center justify-center gap-x-4 md:mt-8">
             {buttons.map((button, index) => (
-              <Button 
+              <Link 
                 key={index} 
-                {...button}
+                href={button.href}
                 className={
                   button.variant === "secondary" 
-                    ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full"
-                    : "text-cardinal hover:text-cardinal/80"
+                    ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full px-6 py-3 font-sans"
+                    : "text-cardinal hover:text-cardinal/80 group flex items-center gap-2 font-sans"
                 }
               >
                 {button.title}
-                {button.variant === "link" && button.iconRight}
-              </Button>
+                {button.variant === "link" && (
+                  <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
+                )}
+              </Link>
             ))}
           </div>
         </div>
@@ -62,26 +55,13 @@ export const Layout499 = (props) => {
           </TabsList>
           {tabs.map((tab, index) => (
             <TabsContent key={index} value={tab.value} className="data-[state=active]:animate-tabs">
-              {tab.image && <img src={tab.image.src} alt={tab.image.alt} className="size-full rounded-lg shadow-lg" />}
-              {tab.video && (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button className="relative flex w-full items-center justify-center">
-                      <img
-                        src={tab.video.image.src}
-                        alt={tab.video.image.alt}
-                        className="size-full rounded-lg object-cover shadow-lg"
-                      />
-                      <span className="absolute inset-0 z-10 rounded-lg bg-black/50" />
-                      <FaCirclePlay className="absolute z-20 size-16 text-white transition-transform hover:scale-110" />
-                    </button>
-                  </DialogTrigger>
-
-                  <DialogContent>
-                    <VideoIframe video={tab.video.url} />
-                  </DialogContent>
-                </Dialog>
-              )}
+              <div className="aspect-[16/9] w-full overflow-hidden rounded-lg">
+                <img 
+                  src={tab.image.src} 
+                  alt={tab.image.alt} 
+                  className="h-full w-full object-cover shadow-lg" 
+                />
+              </div>
             </TabsContent>
           ))}
         </Tabs>
@@ -102,13 +82,10 @@ export const Layout499Defaults = {
       heading: "Warner Bros Discovery",
       description:
         "Revolutionizing content delivery and streaming infrastructure for one of the world's largest media companies.",
-      video: {
-        image: {
-          src: "/images/enterprise/warner-bros-case.svg",
-          alt: "Warner Bros Discovery case study",
-        },
-        url: "https://www.youtube.com/embed/placeholder-warner-bros",
-      },
+      image: {
+        src: "/images/emp/rob_thomas23_African_American_CEO_and_Chief_Executive_Talking_A_72595ef3-0f82-49e6-bbd3-9b4581e80520.png",
+        alt: "Warner Bros Discovery case study",
+      }
     },
     {
       value: "shell",
@@ -116,7 +93,7 @@ export const Layout499Defaults = {
       description:
         "Implementing cutting-edge IoT solutions and data analytics platforms to optimize global operations.",
       image: {
-        src: "/images/enterprise/shell-case.svg",
+        src: "/images/emp/rob_thomas23_African_American_Business_professionals_in_a_moder_0f48e92a-5e85-4e9f-9713-d384e5873a22.png",
         alt: "Shell case study showcase",
       },
     },
@@ -126,7 +103,7 @@ export const Layout499Defaults = {
       description:
         "Developing innovative mobile solutions and enterprise software integration systems.",
       image: {
-        src: "/images/enterprise/samsung-case.svg",
+        src: "/images/emp/rob_thomas23_African_American_Business_professionals_in_a_moder_aa9cdc13-5800-4ce5-8074-5d754c6002f1.png",
         alt: "Samsung case study showcase",
       },
     },
@@ -134,13 +111,13 @@ export const Layout499Defaults = {
   buttons: [
     { 
       title: "View Case Studies", 
-      variant: "secondary"
+      variant: "secondary",
+      href: route('solutions.custom'),
     },
     {
       title: "Enterprise Solutions",
       variant: "link",
-      size: "link",
-      iconRight: <RxChevronRight />,
+      href: route('solutions.fullstack'),
     },
   ],
 };

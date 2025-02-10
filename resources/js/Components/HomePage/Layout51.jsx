@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from "@relume_io/relume-ui";
+import { Link } from "@inertiajs/react";
 import { ArrowRight } from 'lucide-react';
 
 export const Layout51 = ({ 
@@ -34,20 +34,20 @@ export const Layout51 = ({
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
               {buttons.map((button, index) => (
-                <Button 
+                <Link 
                   key={index} 
-                  {...button}
+                  href={button.href}
                   className={
                     button.variant === "secondary-alt" 
-                      ? "bg-white text-port-gore hover:bg-white/90 hover:shadow-md rounded-full font-sans"
-                      : "text-white hover:text-white/80 group flex items-center gap-2 font-sans"
+                      ? "bg-cardinal text-white hover:bg-white/90 hover:shadow-md hover:text-port-gore rounded-full font-sans px-6 py-3"
+                      : "text-white hover:text-cardinal group flex items-center gap-2 font-sans"
                   }
                 >
                   {button.title}
                   {button.variant === "link-alt" && (
                     <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
                   )}
-                </Button>
+                </Link>
               ))}
             </div>
           </div>
@@ -61,41 +61,42 @@ export const Layout51 = ({
 };
 
 export const Layout51Defaults = {
-  tagline: "Innovation Focus",
-  heading: "Modern Tech Stack",
+  tagline: "Development Expertise",
+  heading: "Modern Solutions",
   description:
-    "Embracing cutting-edge technologies and development practices to deliver innovative solutions that keep you ahead of the curve.",
+    "We leverage modern development practices and proven technologies to build scalable, secure, and maintainable software solutions.",
   subHeadings: [
     {
-      title: "Cloud-Native Architecture",
+      title: "Custom Development",
       description:
-        "Building scalable, resilient applications using microservices, containerization, and serverless computing for optimal performance.",
+        "Building tailored solutions using modern frameworks and architectures to meet your specific business requirements.",
     },
     {
-      title: "AI Integration",
+      title: "Web Applications",
       description:
-        "Leveraging machine learning and artificial intelligence to create intelligent solutions that automate processes and enhance decision-making.",
+        "Creating responsive and performant web applications that deliver exceptional user experiences across all devices.",
     },
     {
-      title: "DevOps Excellence",
+      title: "Quality Assurance",
       description:
-        "Implementing robust CI/CD pipelines, infrastructure as code, and automated testing for rapid, reliable deployments.",
+        "Implementing comprehensive testing strategies and automated quality checks to ensure reliable software delivery.",
     },
     {
-      title: "Emerging Technologies",
+      title: "Technical Excellence",
       description:
-        "Staying at the forefront of technology trends, from blockchain to edge computing, to deliver innovative solutions.",
+        "Following industry best practices and design patterns to create maintainable and scalable code bases.",
     },
   ],
   buttons: [
     { 
-      title: "Explore Technologies", 
-      variant: "secondary-alt"
+      title: "View Our Work", 
+      variant: "secondary-alt",
+      href: route('solutions'),
     },
     {
-      title: "View Case Studies",
+      title: "Learn More",
       variant: "link-alt",
-      size: "link",
+      href: route('solutions.custom'),
     },
   ],
 };

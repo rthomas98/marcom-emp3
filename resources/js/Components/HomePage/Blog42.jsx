@@ -1,11 +1,7 @@
-import { Button } from "@relume_io/relume-ui";
-import { RxChevronRight } from "react-icons/rx";
+import { Link } from "@inertiajs/react";
+import { ChevronRight } from "lucide-react";
 
-export const Blog42 = (props) => {
-  const { tagline, heading, description, button, blogPosts } = {
-    ...Blog42Defaults,
-    ...props,
-  };
+export const Blog42 = ({ insights = [], tagline, heading, description }) => {
   return (
     <section id="relume" className="bg-athens-gray px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
@@ -18,46 +14,58 @@ export const Blog42 = (props) => {
             </div>
           </div>
           <div className="hidden md:flex">
-            <Button {...button} className="bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full">
-              {button.title}
-            </Button>
+            <Link 
+              href={route('insights.index')} 
+              className="bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full px-6 py-3 font-sans"
+            >
+              View All Articles
+            </Link>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3">
-          {blogPosts.map((post, index) => (
-            <div key={index} className="flex size-full flex-col items-center justify-start">
-              <a href={post.url} className="mb-6 w-full overflow-hidden rounded-lg">
+          {insights.map((post) => (
+            <div key={post.id} className="flex size-full flex-col items-center justify-start">
+              <Link 
+                href={route('insights.show', { insight: post.slug })} 
+                className="mb-6 w-full overflow-hidden rounded-lg"
+              >
                 <img
-                  src={post.image.src}
-                  alt={post.image.alt}
+                  src={post.image}
+                  alt={post.title}
                   className="aspect-[3/2] size-full object-cover transition-transform duration-300 hover:scale-105"
                 />
-              </a>
+              </Link>
               <div className="rb-4 mb-4 flex w-full items-center justify-start">
                 <p className="mr-4 bg-cardinal/10 px-3 py-1 text-sm font-semibold text-cardinal rounded-full">
                   {post.category}
                 </p>
-                <p className="inline text-sm font-semibold text-port-gore/70">{post.readTime}</p>
+                <p className="inline text-sm font-semibold text-port-gore/70">{post.read_time} min read</p>
               </div>
               <div className="flex w-full flex-col items-start justify-start">
-                <a className="mb-2 hover:text-cardinal transition-colors" href={post.url}>
+                <Link 
+                  href={route('insights.show', { insight: post.slug })}
+                  className="mb-2 hover:text-cardinal transition-colors"
+                >
                   <h2 className="font-heading text-xl font-bold text-port-gore md:text-2xl">{post.title}</h2>
-                </a>
+                </Link>
                 <p className="text-port-gore/70">{post.description}</p>
-                <Button 
-                  {...post.button} 
+                <Link 
+                  href={route('insights.show', { insight: post.slug })}
                   className="mt-6 flex items-center justify-center gap-x-2 text-cardinal hover:text-cardinal/80"
                 >
-                  {post.button.title}
-                  {post.button.iconRight}
-                </Button>
+                  Read more
+                  <ChevronRight className="size-4" />
+                </Link>
               </div>
             </div>
           ))}
         </div>
-        <Button {...button} className="mt-10 bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full md:hidden">
-          {button.title}
-        </Button>
+        <Link 
+          href={route('insights.index')} 
+          className="mt-10 bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full px-6 py-3 font-sans md:hidden"
+        >
+          View All Articles
+        </Link>
       </div>
     </section>
   );
@@ -67,64 +75,4 @@ export const Blog42Defaults = {
   tagline: "Latest Insights",
   heading: "Technology & Innovation",
   description: "Stay ahead with our latest insights on digital transformation, enterprise solutions, and industry trends.",
-  button: { 
-    title: "View All Articles", 
-    variant: "secondary" 
-  },
-  blogPosts: [
-    {
-      url: "#",
-      image: {
-        src: "/images/blog/ai-transformation.svg",
-        alt: "AI Transformation in Enterprise",
-      },
-      category: "AI & ML",
-      readTime: "5 min read",
-      title: "The Future of AI in Enterprise Solutions",
-      description:
-        "Explore how artificial intelligence is revolutionizing enterprise operations and decision-making processes in 2025.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "#",
-      image: {
-        src: "/images/blog/cloud-security.svg",
-        alt: "Cloud Security Solutions",
-      },
-      category: "Security",
-      readTime: "4 min read",
-      title: "Advanced Cloud Security Practices",
-      description:
-        "Learn about the latest cloud security measures and how they protect enterprise data in an increasingly connected world.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "#",
-      image: {
-        src: "/images/blog/digital-transformation.svg",
-        alt: "Digital Transformation Strategy",
-      },
-      category: "Strategy",
-      readTime: "6 min read",
-      title: "Digital Transformation Success Stories",
-      description:
-        "Discover how leading enterprises are achieving remarkable results through strategic digital transformation initiatives.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-  ],
 };

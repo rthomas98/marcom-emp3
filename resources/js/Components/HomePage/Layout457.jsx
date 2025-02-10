@@ -1,22 +1,25 @@
 import React from 'react';
-import { Button } from "@relume_io/relume-ui";
+import { Link } from "@inertiajs/react";
 import clsx from "clsx";
 import { ArrowRight } from 'lucide-react';
 
-const Feature = ({ image, heading, description }) => (
-  <div className="group cursor-pointer">
-    <div className="rb-6 mb-6 w-full overflow-hidden rounded-lg md:mb-8">
-      <img
-        src={image.src}
-        alt={image.alt}
-        className="aspect-[3/2] w-full transform object-cover transition-transform duration-300 group-hover:scale-105"
-      />
+const Feature = ({ image, heading, description, href }) => (
+  <Link href={href} className="group block cursor-pointer">
+    <div className="relative mb-6 w-full overflow-hidden rounded-lg bg-athens-gray md:mb-8">
+      <div className="aspect-[3/2] w-full">
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          className="h-full w-full transform object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
     </div>
     <h2 className="font-heading mb-3 text-2xl font-bold text-port-gore md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">
       {heading}
     </h2>
-    <p className="font-sans text-port-gore/70">{description}</p>
-  </div>
+    <p className="font-sans mb-4 text-port-gore/70">{description}</p>
+  </Link>
 );
 
 export const Layout457 = ({ 
@@ -28,7 +31,7 @@ export const Layout457 = ({
   ...props 
 }) => {
   return (
-    <section className="bg-white overflow-hidden px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-white px-[5%] py-16 md:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-lg md:mb-18 lg:mb-20">
           <p className="font-heading mb-3 font-semibold text-cardinal md:mb-4">{tagline}</p>
@@ -50,13 +53,13 @@ export const Layout457 = ({
             </div>
           ))}
         </div>
-        <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
+        <div className="mt-12 flex flex-wrap items-center gap-4 md:mt-16">
           {buttons.map((button, index) => (
-            <Button 
+            <Link 
               key={index} 
-              {...button}
+              href={button.href}
               className={clsx(
-                "group flex items-center gap-2 transition-all font-sans",
+                "group inline-flex items-center gap-2 px-6 py-3 font-sans transition-all",
                 {
                   "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full": button.variant === "primary",
                   "bg-port-gore text-white hover:bg-port-gore/90 hover:shadow-md rounded-full": button.variant === "secondary-alt",
@@ -68,7 +71,7 @@ export const Layout457 = ({
               {button.variant === "link" && (
                 <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
               )}
-            </Button>
+            </Link>
           ))}
         </div>
       </div>
@@ -77,47 +80,52 @@ export const Layout457 = ({
 };
 
 export const Layout457Defaults = {
-  tagline: "Industry Understanding",
-  heading: "Sector Expertise",
+  tagline: "Industry Solutions",
+  heading: "Expert Development",
   description:
-    "Deep knowledge and proven experience across diverse industries, delivering tailored solutions that address sector-specific challenges and opportunities.",
+    "We deliver tailored software solutions across various industries, helping businesses transform their digital presence and streamline operations.",
   features: [
     {
       image: {
-        src: "/images/placeholder-industry.svg",
-        alt: "Healthcare sector solutions",
+        src: "/images/emp/rob_thomas23_Africa_American_Software_developers_discussing_abo_61339e21-6c03-4f31-9813-6dafd2b02df0.png",
+        alt: "Startup development solutions",
       },
-      heading: "Healthcare Innovation",
+      heading: "Startup Solutions",
       description:
-        "Transforming patient care through secure, compliant digital solutions that streamline operations and enhance healthcare delivery.",
+        "Agile development services tailored for startups, helping bring innovative ideas to market quickly and efficiently.",
+      href: route('industries.startups'),
     },
     {
       image: {
-        src: "/images/placeholder-industry.svg",
-        alt: "Financial services solutions",
+        src: "/images/emp/rob_thomas23_A_dynamic_image_of_an_ecommerce_website_on_a_lapto_8573ee70-5ea2-48aa-ae70-35db662a51f2.png",
+        alt: "E-commerce development",
       },
-      heading: "Fintech Excellence",
+      heading: "E-commerce Growth",
       description:
-        "Empowering financial institutions with robust, secure platforms that drive digital transformation and enhance customer experience.",
+        "Custom e-commerce platforms that drive sales, enhance customer experience, and scale with your business.",
+      href: route('solutions.ecommerce'),
     },
     {
       image: {
-        src: "/images/placeholder-industry.svg",
-        alt: "E-commerce solutions",
+        src: "/images/emp/rob_thomas23_African_American_Coders_working_in_a_Software_deve_390a7a57-d7d7-4496-88ad-dce46e0c4c80.png",
+        alt: "Enterprise solutions",
       },
-      heading: "Retail Evolution",
+      heading: "Enterprise Systems",
       description:
-        "Building scalable e-commerce solutions that create seamless shopping experiences and drive business growth.",
+        "Robust enterprise solutions that modernize operations, improve efficiency, and drive digital transformation.",
+      href: route('solutions.custom'),
     },
   ],
   buttons: [
     { 
-      title: "Explore Industries", 
-      variant: "primary"
+      title: "View All Solutions", 
+      variant: "primary",
+      href: route('solutions'),
     },
     {
-      title: "Learn More",
-      variant: "secondary-alt"
+      title: "Get Started",
+      variant: "secondary-alt",
+      href: route('solutions.custom'),
     },
   ],
 };

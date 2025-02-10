@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from "@relume_io/relume-ui";
+import { Link } from "@inertiajs/react";
 import { 
   ArrowRight, 
   Code2, 
@@ -12,7 +12,7 @@ const Card = ({ tagline, image, heading, description, button }) => {
   return (
     <div className="flex auto-cols-fr flex-col border border-port-gore/10 bg-white transition-all hover:shadow-lg last-of-type:row-span-1 last-of-type:grid sm:col-span-2 sm:grid-cols-2 sm:last-of-type:row-start-2 md:last-of-type:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:last-of-type:col-span-2">
       <div className="flex size-full flex-col items-center justify-center self-start bg-athens-gray lg:h-auto">
-        <img src={image.src} alt={image.alt} className="w-full" />
+        <img src={image.src} alt={image.alt} className="w-full" loading="lazy" />
       </div>
       <div className="block flex-1 p-6 sm:flex sm:flex-col sm:justify-center md:p-8">
         <div>
@@ -23,13 +23,13 @@ const Card = ({ tagline, image, heading, description, button }) => {
           <p className="font-sans text-port-gore/70">{description}</p>
         </div>
         <div className="mt-5 md:mt-6">
-          <Button 
-            {...button} 
+          <Link 
+            href={button.href || '#'} 
             className="group flex items-center gap-2 text-cardinal hover:text-cardinal/80"
           >
             {button.title}
             <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -49,13 +49,13 @@ const FeatureSection = ({ icon, heading, description, button }) => (
         <p className="font-sans text-port-gore/70">{description}</p>
       </div>
       <div className="mt-5 md:mt-6">
-        <Button 
-          {...button}
+        <Link 
+          href={button.href || '#'} 
           className="group flex items-center gap-2 text-cardinal hover:text-cardinal/80"
         >
           {button.title}
           <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
-        </Button>
+        </Link>
       </div>
     </div>
   </div>
@@ -93,36 +93,34 @@ export const Layout393 = ({
 };
 
 export const Layout393Defaults = {
-  tagline: "Technical Excellence",
-  heading: "Full-Stack Mastery",
-  description: "Leveraging cutting-edge technologies and best practices to deliver robust, scalable, and innovative solutions that drive your business forward.",
+  tagline: "Development Expertise",
+  heading: "End-to-End Solutions",
+  description: "We specialize in delivering comprehensive software solutions that empower businesses with modern, scalable, and user-centric applications.",
   cards: [
     {
-      tagline: "Modern Architecture",
+      tagline: "E-commerce Solutions",
       image: {
-        src: "/images/placeholder-card.svg",
-        alt: "Modern architecture visualization",
+        src: "/images/emp/rob_thomas23_African_American_developers_working_in_an_agency.__2447dfcb-adaf-4241-b1a4-34a264486177.png",
+        alt: "Development team working on e-commerce platform",
       },
-      heading: "Cloud-Native Solutions",
-      description: "Building scalable, resilient applications with microservices architecture and containerization for optimal performance.",
+      heading: "Digital Commerce",
+      description: "Custom e-commerce solutions built with modern frameworks and optimized for performance and conversion.",
       button: {
-        title: "Explore Architecture",
-        variant: "link",
-        size: "link",
+        title: "Explore E-commerce",
+        href: route('solutions.ecommerce'),
       },
     },
     {
-      tagline: "Development Excellence",
+      tagline: "Web Applications",
       image: {
-        src: "/images/placeholder-card.svg",
-        alt: "Development workflow visualization",
+        src: "/images/emp/rob_thomas23_African_American_Web_Developers_in_a_working_envir_008ed057-ce50-4832-bfc4-21051acf71dd.png",
+        alt: "Team developing web application",
       },
-      heading: "Agile Development",
-      description: "Implementing CI/CD pipelines and automated testing for rapid, reliable software delivery.",
+      heading: "Custom Solutions",
+      description: "Scalable web applications that deliver exceptional user experiences across all devices.",
       button: {
-        title: "View Process",
-        variant: "link",
-        size: "link",
+        title: "View Solutions",
+        href: route('solutions.custom'),
       },
     },
   ],
@@ -132,12 +130,11 @@ export const Layout393Defaults = {
         component: <Code2 className="size-12 stroke-[1.5]" />,
         alt: "Frontend development icon",
       },
-      heading: "Frontend Excellence",
-      description: "Expert implementation of React, Vue, and modern JavaScript frameworks for exceptional user experiences.",
+      heading: "Frontend Development",
+      description: "Creating responsive and intuitive user interfaces using React and modern web technologies.",
       button: {
         title: "Learn More",
-        variant: "link",
-        size: "link",
+        href: route('solutions.frontend'),
       },
     },
     {
@@ -145,12 +142,11 @@ export const Layout393Defaults = {
         component: <Database className="size-12 stroke-[1.5]" />,
         alt: "Backend development icon",
       },
-      heading: "Backend Power",
-      description: "Robust server-side solutions using Node.js, Python, and enterprise-grade databases for reliable performance.",
+      heading: "Backend Development",
+      description: "Building robust server-side solutions with secure APIs and efficient database management.",
       button: {
         title: "Discover More",
-        variant: "link",
-        size: "link",
+        href: route('solutions.backend'),
       },
     },
   ],

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BiSolidStar } from "react-icons/bi";
+import { Star } from "lucide-react";
 import clsx from "clsx";
 import {
   Carousel,
@@ -87,7 +87,7 @@ const TestimonialCard = ({ testimonial }) => {
         {Array(testimonial.numberOfStars)
           .fill(null)
           .map((_, starIndex) => (
-            <BiSolidStar key={starIndex} className="size-6" />
+            <Star key={starIndex} className="size-6 fill-current" />
           ))}
       </div>
       <blockquote className="font-sans text-port-gore/80 md:text-lg">{testimonial.quote}</blockquote>
@@ -119,7 +119,7 @@ export const Testimonial20Defaults = {
       quote:
         "Their innovative approach to content delivery infrastructure has significantly improved our streaming capabilities. The team's expertise and dedication to excellence made them a valuable partner in our digital transformation journey.",
       avatar: {
-        src: "/images/testimonials/warner-bros-avatar.svg",
+        src: "/images/emp/rob_thomas23_African_American_CEO_and_Chief_Executive_Talking_A_72595ef3-0f82-49e6-bbd3-9b4581e80520.png",
         alt: "Warner Bros Discovery representative",
       },
       name: "Michael Chen",
@@ -131,7 +131,7 @@ export const Testimonial20Defaults = {
       quote:
         "The IoT solutions implemented have revolutionized how we monitor and optimize our operations. Their deep understanding of enterprise-scale challenges and ability to deliver robust solutions sets them apart.",
       avatar: {
-        src: "/images/testimonials/shell-avatar.svg",
+        src: "/images/emp/rob_thomas23_African_American_Business_professionals_in_a_moder_0f48e92a-5e85-4e9f-9713-d384e5873a22.png",
         alt: "Shell representative",
       },
       name: "Sarah Martinez",
@@ -143,7 +143,7 @@ export const Testimonial20Defaults = {
       quote:
         "Their expertise in mobile solutions and enterprise software integration has been instrumental in modernizing our digital infrastructure. The team's commitment to quality and innovation is exceptional.",
       avatar: {
-        src: "/images/testimonials/samsung-avatar.svg",
+        src: "/images/emp/rob_thomas23_African_American_Business_professionals_in_a_moder_aa9cdc13-5800-4ce5-8074-5d754c6002f1.png",
         alt: "Samsung representative",
       },
       name: "David Park",

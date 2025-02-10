@@ -1,15 +1,17 @@
 import React from 'react';
-import { Button } from "@relume_io/relume-ui";
+import { Link } from "@inertiajs/react";
 import { ArrowRight } from 'lucide-react';
 
 const Section = ({ image, tagline, heading, description, buttons }) => (
   <div className="group">
     <div className="rb-6 mb-6 overflow-hidden rounded-lg md:mb-8">
-      <img 
-        src={image.src} 
-        alt={image.alt} 
-        className="w-full transform transition-transform duration-300 group-hover:scale-105"
-      />
+      <div className="aspect-[16/9] w-full">
+        <img 
+          src={image.src} 
+          alt={image.alt} 
+          className="h-full w-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
     </div>
     <p className="font-heading mb-3 font-semibold text-cardinal md:mb-4">{tagline}</p>
     <h3 className="font-heading mb-5 text-4xl font-bold leading-[1.2] text-port-gore md:mb-6 md:text-5xl lg:text-6xl">
@@ -18,12 +20,12 @@ const Section = ({ image, tagline, heading, description, buttons }) => (
     <p className="font-sans text-port-gore/70 mt-5 md:mt-6">{description}</p>
     <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
       {buttons.map((button, index) => (
-        <Button 
+        <Link 
           key={index} 
-          {...button}
+          href={button.href}
           className={
             button.variant === "primary" 
-              ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full font-sans"
+              ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-md rounded-full font-sans px-6 py-3"
               : "text-cardinal hover:text-cardinal/80 group flex items-center gap-2 font-sans"
           }
         >
@@ -31,7 +33,7 @@ const Section = ({ image, tagline, heading, description, buttons }) => (
           {button.variant === "link" && (
             <ArrowRight className="h-4 w-4 transform transition-transform group-hover:translate-x-1" />
           )}
-        </Button>
+        </Link>
       ))}
     </div>
   </div>
@@ -55,7 +57,7 @@ export const Layout131Defaults = {
   sections: [
     {
       image: {
-        src: "/images/placeholder-remote.svg",
+        src: "/images/emp/rob_thomas23_African_American_Designers_and_developers_collabor_074e0918-602f-489f-a994-549f9d1f62fa.png",
         alt: "Global team collaboration illustration",
       },
       tagline: "Remote-First Culture",
@@ -65,18 +67,19 @@ export const Layout131Defaults = {
       buttons: [
         { 
           title: "Meet Our Team", 
-          variant: "primary"
+          variant: "primary",
+          href: route('solutions'),
         },
         {
           title: "Learn About Our Process",
           variant: "link",
-          size: "link",
+          href: route('solutions.custom'),
         },
       ],
     },
     {
       image: {
-        src: "/images/placeholder-remote.svg",
+        src: "/images/emp/rob_thomas23_African_American_Project_Manager_Makes_a_Presentat_2d8255b5-eb2b-4d1c-b57d-58077e6d9d44.png",
         alt: "Agile delivery process illustration",
       },
       tagline: "Efficient Delivery",
@@ -86,12 +89,13 @@ export const Layout131Defaults = {
       buttons: [
         { 
           title: "View Case Studies", 
-          variant: "primary"
+          variant: "primary",
+          href: route('solutions.custom'),
         },
         {
           title: "Explore Methodology",
           variant: "link",
-          size: "link",
+          href: route('solutions.fullstack'),
         },
       ],
     },

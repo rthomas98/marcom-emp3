@@ -1,25 +1,31 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
+import { navigationConfig } from '../Navigation/navigationConfig.jsx';
 
 export default function Footer({ 
-  logo,
-  newsletterDescription,
-  inputPlaceholder,
-  button,
+  newsletterDescription = "Stay updated with our latest insights and news about enterprise solutions and digital transformation.",
+  inputPlaceholder = "Enter your email",
+  button = {
+    url: route('solutions'),
+    title: "Subscribe"
+  },
   termsAndConditions,
   columnLinks,
   footerText,
   footerLinks 
 }) {
+  const { logo } = navigationConfig;
+
   return (
     <footer className="bg-athens-gray">
       <div className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 sm:py-12 md:py-16 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-[0.75fr_1fr] lg:gap-x-8 lg:gap-y-0">
           {/* Newsletter Section */}
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <Link href={logo.url} className="mb-4 inline-block sm:mb-6">
-              <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
-            </Link>
+          <Link href={logo.url} className="flex items-center gap-2 mb-4">
+            <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
+            <span className="font-heading text-lg font-semibold text-port-gore sm:text-xl md:text-2xl">Empuls3</span>
+          </Link>
             <p className="mb-4 text-base text-port-gore sm:mb-6">
               {newsletterDescription}
             </p>
@@ -97,17 +103,12 @@ export default function Footer({
 }
 
 Footer.propTypes = {
-  logo: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  }).isRequired,
-  newsletterDescription: PropTypes.string.isRequired,
-  inputPlaceholder: PropTypes.string.isRequired,
+  newsletterDescription: PropTypes.string,
+  inputPlaceholder: PropTypes.string,
   button: PropTypes.shape({
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   termsAndConditions: PropTypes.string.isRequired,
   columnLinks: PropTypes.arrayOf(
     PropTypes.shape({

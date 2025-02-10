@@ -11,15 +11,41 @@ import { Testimonial20 } from '../Components/HomePage/Testimonial20';
 import { Cta3 } from '../Components/HomePage/Cta3';
 import { Blog42 } from '../Components/HomePage/Blog42';
 
-export default function Home() {
+export default function Home({ insights }) {
     return (
         <MarcomLayout>
             <Header79 
-                heading="Empowering Digital Innovation with AI"
-                description="Transform your business with cutting-edge AI solutions and custom foundation models. Experience the future of digital transformation powered by machine learning."
-                buttons={[
-                    { title: "Get Started", variant: "primary" },
-                    { title: "Learn More", variant: "secondary-alt" }
+                heading="Crafting Digital Solutions That Drive Growth"
+                description="Expert software development and digital solutions for businesses. From custom applications to e-commerce platforms, we deliver technology that transforms your vision into reality."
+                images={[
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-1.jpg",
+                        alt: "AI Innovation Image 1",
+                    },
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-2.jpg",
+                        alt: "AI Innovation Image 2",
+                    },
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-3.jpg",
+                        alt: "AI Innovation Image 3",
+                    },
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-4.jpg",
+                        alt: "AI Innovation Image 4",
+                    },
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-5.jpg",
+                        alt: "AI Innovation Image 5",
+                    },
+                    {
+                        src: "https://empuls3.nyc3.digitaloceanspaces.com/images/home/ai-6.jpg",
+                        alt: "AI Innovation Image 6",
+                    },
+                ]}
+                links={[
+                    { title: "Get Started", href: route('resources.contact') },
+                    { title: "Learn More", href: route('company.about') }
                 ]}
             />
             <Layout6 />
@@ -30,7 +56,12 @@ export default function Home() {
             <Layout499 />
             <Testimonial20 />
             <Cta3 />
-            <Blog42 />
+            <Blog42 
+                insights={insights}
+                tagline="Latest Insights"
+                heading="Technology & Innovation"
+                description="Stay ahead with our latest insights on digital transformation, enterprise solutions, and industry trends."
+            />
         </MarcomLayout>
     );
 }

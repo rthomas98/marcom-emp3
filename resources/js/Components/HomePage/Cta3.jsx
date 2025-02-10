@@ -1,4 +1,4 @@
-import { Button } from "@relume_io/relume-ui";
+import { Link } from "@inertiajs/react";
 
 export const Cta3 = (props) => {
   const { heading, description, buttons, image } = {
@@ -15,23 +15,24 @@ export const Cta3 = (props) => {
           <p className="text-white/80 md:text-lg">{description}</p>
           <div className="mt-8 flex flex-wrap gap-4 md:mt-10">
             {buttons.map((button, index) => (
-              <Button 
+              <Link 
                 key={index} 
-                {...button}
+                href={button.href}
                 className={
                   button.variant === "primary" 
-                    ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-lg rounded-full"
-                    : "bg-port-gore text-white hover:bg-port-gore/90 hover:shadow-lg rounded-full border border-white/10"
+                    ? "bg-cardinal text-white hover:bg-cardinal/90 hover:shadow-lg rounded-full px-6 py-3 font-sans"
+                    : "bg-port-gore text-white hover:bg-port-gore/90 hover:shadow-lg rounded-full border border-white/10 px-6 py-3 font-sans"
                 }
               >
                 {button.title}
-              </Button>
+              </Link>
             ))}
           </div>
         </div>
       </div>
       <div className="absolute inset-0 -z-10">
         <img src={image.src} className="size-full object-cover" alt={image.alt} />
+        <div className="absolute inset-0 bg-gradient-to-r from-port-gore/90 to-port-gore/80" />
       </div>
     </section>
   );
@@ -44,15 +45,17 @@ export const Cta3Defaults = {
   buttons: [
     { 
       title: "Schedule Consultation",
-      variant: "primary"
+      variant: "primary",
+      href: route('solutions.custom'),
     }, 
     { 
       title: "Contact Us",
-      variant: "secondary"
+      variant: "secondary",
+      href: route('solutions'),
     }
   ],
   image: {
-    src: "/images/cta/consultation-bg.svg",
+    src: "/images/emp/rob_thomas23_African_American_Project_Manager_Makes_a_Presentat_ff51deb6-2b53-4935-b091-29dd4ac7a594.png",
     alt: "Schedule a consultation background",
   },
 };
